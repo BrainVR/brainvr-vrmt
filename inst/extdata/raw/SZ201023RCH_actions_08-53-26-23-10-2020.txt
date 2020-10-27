@@ -1,0 +1,27 @@
+***SESSION HEADER***
+{
+  "Participant": "SZ201023RCH",
+  "Timestamp": "08-53-26-23-10-2020"
+}
+---SESSION HEADER---
+***TEST HEADER***
+
+---TEST HEADER---
+Timestamp;Action;Item_Name;Position;Location;Distance_To_Origin;Task_Order;TaskCity;Trajectory_Length;Elapsed_Time;Phase;
+32080.4249;picked;Kostka;(116.0, 11.4, 139.7);rock;78.9;5;Task0;0;0;recallItems;
+32091.3895;picked;Rámeček;(119.9, 11.3, 143.4);rock;90.7;3;Task0;0;0;recallItems;
+32098.9229;dropped;Kostka;(121.8, 11.8, 140.3);rock;81.7;5;Task0;0;0;recallItems;
+32107.5224;dropped;Rámeček;(120.3, 11.8, 139.6);rock;92.1;3;Task0;0;0;recallItems;
+32119.7391;picked;Rámeček;(120.3, 11.8, 139.6);rock;92.1;3;Task0;0;0;recallItems;
+32173.1592;dropped;Medvídek;(204.5, 14.3, 179.4);skanzen;176.3;1;Task0;113.39;46.01;recallSpace;
+32175.3913;picked;Medvídek;(204.5, 14.3, 179.4);skanzen;176.3;1;Task0;0;2.22;recallSpace;
+32190.8942;dropped;Medvídek;(204.5, 14.3, 179.4);skanzen;176.3;1;Task0;0;15.51;recallSpace;
+32256.7640;dropped;Notebook;(173.6, 11.3, 67.8);museum;4.7;4;Task0;180.19;65.83;recallSpace;
+32258.6621;picked;Notebook;(173.6, 11.3, 67.8);museum;4.7;4;Task0;0;1.88;recallSpace;
+32259.3471;dropped;Kostka;(173.6, 11.3, 67.8);museum;84.9;5;Task0;0;0.7;recallSpace;
+32264.5474;picked;Kostka;(173.6, 11.3, 67.8);museum;84.9;5;Task0;0;5.18;recallSpace;
+32265.6965;dropped;Notebook;(173.6, 11.3, 67.8);museum;4.7;4;Task0;0;1.17;recallSpace;
+32267.6306;picked;Notebook;(173.6, 11.3, 67.8);museum;4.7;4;Task0;0;1.92;recallSpace;
+32270.2647;dropped;Notebook;(173.6, 11.3, 67.8);museum;4.7;4;Task0;0;2.65;recallSpace;
+32311.6321;dropped;Houba;(43.1, 11.3, 100.9);radar;178.4;3;Task0;188.37;41.34;recallSpace;
+32361.3539;dropped;Kávovar;(94.9, 11.3, 202.1);supermarket;2.4;2;Task0;176.48;49.69;recallSpace;

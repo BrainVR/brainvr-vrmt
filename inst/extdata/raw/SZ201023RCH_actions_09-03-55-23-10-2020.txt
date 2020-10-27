@@ -1,0 +1,43 @@
+***SESSION HEADER***
+{
+  "Participant": "SZ201023RCH",
+  "Timestamp": "09-03-55-23-10-2020"
+}
+---SESSION HEADER---
+***TEST HEADER***
+
+---TEST HEADER---
+Timestamp;Action;Item_Name;Position;Location;Distance_To_Origin;Task_Order;TaskCity;Trajectory_Length;Elapsed_Time;Phase;
+32744.1710;picked;Dinosaurus;(116.0, 11.4, 139.7);fountain;78.9;1;Task1;0;0;recallItems;
+32760.5219;picked;Globus;(130.3, 11.3, 144.1);fountain;94.2;4;Task1;0;0;recallItems;
+32767.3153;picked;Míč;(127.6, 11.4, 144.8);fountain;83.2;3;Task1;0;0;recallItems;
+32791.4007;picked;Šlehačka;(138.7, 11.3, 136.3);fountain;78.3;3;Task1;0;0;recallItems;
+32799.3761;dropped;Balení piv;(136.2, 11.8, 136.8);;76.5;5;Task1;0;6.94;recallSpace;
+32801.8053;picked;Balení piv;(136.2, 11.8, 136.8);fountain;76.5;5;Task1;0;2.41;recallSpace;
+32837.1243;dropped;Dinosaurus;(89.9, 11.3, 64.4);railway;1.8;1;Task1;111.96;35.31;recallSpace;
+32885.0610;dropped;Pantofle;(90.8, 11.3, 198.9);post;7.2;2;Task1;177.49;47.91;recallSpace;
+32941.0302;dropped;Ananas;(200.1, 14.3, 178.0);playground;105.7;2;Task1;247.82;55.94;recallSpace;
+32981.9106;dropped;Balení piv;(43.2, 11.3, 102.2);cemetery;136.4;5;Task1;254.53;40.86;recallSpace;
+32984.1777;picked;Balení piv;(43.2, 11.3, 102.2);cemetery;136.4;5;Task1;0;2.23;recallSpace;
+32986.4258;dropped;Globus;(43.2, 11.3, 102.2);cemetery;6.2;4;Task1;0;2.28;recallSpace;
+33018.9977;dropped;Balení piv;(179.0, 11.3, 69.9);mill;3.3;5;Task1;195.28;32.55;recallSpace;
+33055.1608;picked;Míč;(116.2, 11.4, 125.3);tree;103;1;Task2;0;0;recallItems;
+33065.8804;picked;Krém;(117.7, 11.3, 141.8);tree;81.8;2;Task2;0;0;recallItems;
+33083.4154;picked;Autíčko;(137.6, 11.4, 139.1);tree;88.2;5;Task2;0;0;recallItems;
+33094.1060;picked;Ručník;(139.1, 11.4, 133.7);tree;72.3;3;Task2;0;0;recallItems;
+33098.2352;picked;Šlehačka;(139.0, 11.3, 130.9);tree;81.3;1;Task2;0;0;recallItems;
+33159.6507;dropped;Šlehačka;(200.6, 14.3, 175.3);camp;7.6;1;Task2;208.24;45.41;recallSpace;
+33201.6481;dropped;Figurína;(46.8, 11.4, 104.1);factory;5.6;2;Task2;245.28;41.97;recallSpace;
+33233.7690;dropped;Míč;(93.6, 11.3, 201.3);church;109.6;1;Task2;189.56;32.1;recallSpace;
+33268.6230;dropped;Ručník;(176.8, 11.3, 70.3);coffee;1.5;3;Task2;205.95;34.83;recallSpace;
+33296.2706;dropped;Sýr;(95.7, 11.3, 60.9);busstation;8.4;5;Task2;149.73;27.63;recallSpace;
+33322.9671;picked;Paprika;(127.6, 11.3, 144.8);statue;87.9;2;Task0;0;0;recallItems;
+33330.5755;picked;Svíčka;(122.3, 11.3, 144.5);statue;88.1;5;Task0;0;0;recallItems;
+33334.8758;picked;Muffin;(119.9, 11.3, 143.4);statue;62.9;1;Task0;0;0;recallItems;
+33368.9207;picked;Krém;(135.6, 11.3, 141.5);statue;98.3;3;Task0;0;0;recallItems;
+33391.1800;picked;Autíčko;(137.6, 11.4, 139.1);statue;88.2;4;Task0;0;0;recallItems;
+33433.0424;dropped;Muffin;(91.5, 11.3, 200.1);hospital;6.2;1;Task0;183.56;41.59;recallSpace;
+33468.1974;dropped;Paprika;(178.4, 11.3, 67.6);hotel;4.6;2;Task0;190.23;35.13;recallSpace;
+33505.6285;dropped;Krém;(44.8, 11.3, 101.5);waste;7.1;3;Task0;205.98;37.41;recallSpace;
+33548.7950;dropped;Svíčka;(201.3, 14.3, 172.9);well;9.9;5;Task0;250.15;43.14;recallSpace;
+33594.7996;dropped;Autíčko;(99.9, 11.3, 62.5);airport;11.5;4;Task0;235.76;45.98;recallSpace;

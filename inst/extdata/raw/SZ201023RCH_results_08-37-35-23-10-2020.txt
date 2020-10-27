@@ -1,0 +1,13 @@
+***SESSION HEADER***
+{
+  "Participant": "SZ201023RCH",
+  "Timestamp": "08-37-35-23-10-2020"
+}
+---SESSION HEADER---
+***TEST HEADER***
+
+---TEST HEADER---
+Timestamp;Task_Name;Phase;Total_Time;Times;Total_Trajectory;Trajectories;Collection_Items_Picked;Item_List;Collection_Items_Correct;Order_Errors;Placement_Errors;Location_Errors;
+31350.0656;Task0;pickup;289.12;(64.15,46.75,54.68,39,84.53);941.88;(154.55,178.61,209.3,159.85,239.57);0;(Muffin, Paprika, Krém, Autíčko, Svíčka);5;0;0;0;
+31552.3732;Task1;pickup;197.29;(46.53,34.37,35.39,46.37,34.63);889.13;(159.52,157.36,204.09,211.03,157.13);0;(Dinosaurus, Pantofle, Ananas, Globus, Balení piv);5;0;0;0;
+31784.4165;Task2;pickup;227.03;(54.35,40.74,33.56,31.64,66.74);1039.05;(240.69,209.4,174.69,157.95,256.32);0;(Šlehačka, Figurína, Ručník, Míč, Sýr);5;0;0;0;

@@ -1,0 +1,49 @@
+***SESSION HEADER***
+{
+  "Participant": "SZ201023RCH",
+  "Timestamp": "08-53-26-23-10-2020"
+}
+---SESSION HEADER---
+***TEST HEADER***
+
+---TEST HEADER---
+Time;Sender;Index;Event;Message;
+32006.8127;teleport;0;to-start;(0.0, 0.0, 0.0);
+32006.8147;phase;0;end;pickup;
+32006.8147;phase;0;start;exploration;
+32006.8267;task;0;start;default;
+32006.8267;route;1;point-activated;;
+32006.8267;location;0;opening;1;
+32037.0204;phase;0;force-start;recall;
+32037.0204;task;0;end;default;
+32037.0204;teleport;0;to-start;(121.2, 12.3, 130.6);
+32037.0204;phase;0;end;exploration;
+32037.0204;phase;0;start;recall;
+32037.0234;task;0;start;Task0;
+32037.0234;location;0;closing;all;
+32037.0484;phase;0;start;recallItems;
+32037.0484;barrier;0;activating;;
+32037.0494;park;0;activating;;
+32127.1246;phase;0;end;recallItems;
+32127.1286;phase;0;start;recallPlacement;
+32127.1416;barrier;0;deactivating;;
+32158.6244;trigger;0;enter;bridge-skanzen;
+32159.1584;trigger;0;exit;bridge-skanzen;
+32214.2285;trigger;0;enter;bridge-skanzen;
+32214.7616;trigger;0;exit;bridge-skanzen;
+32233.7617;trigger;0;enter;bridge-museum;
+32234.3127;trigger;0;exit;bridge-museum;
+32284.3645;trigger;0;enter;bridge-museum;
+32285.0636;trigger;0;exit;bridge-museum;
+32293.7491;trigger;0;enter;bridge-radar;
+32294.2661;trigger;0;exit;bridge-radar;
+32335.3335;trigger;0;enter;bridge-radar;
+32335.8995;trigger;0;exit;bridge-radar;
+32346.2831;trigger;0;enter;bridge-supermarket;
+32346.8001;trigger;0;exit;bridge-supermarket;
+32373.6357;trigger;0;enter;bridge-supermarket;
+32374.1517;trigger;0;exit;bridge-supermarket;
+32380.8001;trigger;0;enter;bridge-skanzen;
+32381.3171;trigger;0;exit;bridge-skanzen;
+32406.0525;trigger;0;enter;bridge-skanzen;
+32406.5695;trigger;0;exit;bridge-skanzen;

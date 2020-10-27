@@ -1,0 +1,49 @@
+***SESSION HEADER***
+{
+  "Participant": "SZ201023RCH",
+  "Timestamp": "08-53-26-23-10-2020"
+}
+---SESSION HEADER---
+***EXPERIMENT INFO***
+{
+  "BuildInfo": {
+    "buildDate": "2020/10/10",
+    "project": "EMT_Islands",
+    "branch": "master",
+    "version": "4"
+  },
+  "Participant": {
+    "Id": "SZ201023RCH",
+    "Age": 27,
+    "Sex": "man"
+  },
+  "Settings": {
+    "settings": [
+      "name: Default setting",
+      "generateLogs: True",
+      "restartPlayer: True",
+      "playerHeight: 2.5",
+      "playerSpeed: 7",
+      "playerJump: False",
+      "exp_pauseTime: 60",
+      "pick_stareTime: 3",
+      "pick_pauseTime: 5",
+      "rec_waitBefore: 5",
+      "rec_waitBetween: 5",
+      "rec_selectionLimit: 90",
+      "rec_timeLimit: 420",
+      "tolerance: 6",
+      "tasks: C:/Users/Public/Documents/VR/islands2.0.3/islands2.0.3/islands2.0.3_Data/../ExperimentTasks/VREMTtasks_zacvikPredMRI.json"
+    ]
+  },
+  "Task": "[rock,radar,supermarket,skanzen,museum,gasstation,19,snow]",
+  "CameraInfo": {
+    "FieldOfView": 60.0,
+    "FacClipPlane": 1000.0
+  },
+  "ScreenInfo": {
+    "Height": 768.0,
+    "Width": 1024.0
+  }
+}
+---EXPERIMENT INFO---

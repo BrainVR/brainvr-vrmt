@@ -1,0 +1,10 @@
+***SESSION HEADER***
+{
+  "Participant": "SZ201023RCH",
+  "Timestamp": "08-53-26-23-10-2020"
+}
+---SESSION HEADER---
+***TEST HEADER***
+
+---TEST HEADER---
+Timestamp;Task_Name;Phase;Total_Time;Times;Total_Trajectory;Trajectories;Collection_Items_Picked;Item_List;Collection_Items_Correct;Order_Errors;Placement_Errors;Location_Errors;

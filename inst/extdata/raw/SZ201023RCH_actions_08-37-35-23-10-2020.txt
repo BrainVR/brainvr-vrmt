@@ -1,0 +1,25 @@
+***SESSION HEADER***
+{
+  "Participant": "SZ201023RCH",
+  "Timestamp": "08-37-35-23-10-2020"
+}
+---SESSION HEADER---
+***TEST HEADER***
+
+---TEST HEADER---
+Timestamp;Action;Item_Name;Position;Location;Distance_To_Origin;Task_Order;TaskCity;Trajectory_Length;Elapsed_Time;Phase;
+31109.7582;picked;Muffin;(97.3, 10.6, 202.1);hospital;0;1;Task0;0;0;pickup;
+31151.0790;picked;Paprika;(176.2, 10.7, 71.6);hotel;0;2;Task0;154.55;64.15;pickup;
+31205.7449;picked;Krém;(43.1, 10.7, 108.4);waste;0;3;Task0;178.61;46.75;pickup;
+31251.4731;picked;Autíčko;(88.8, 10.6, 65.7);airport;0;4;Task0;209.3;54.68;pickup;
+31315.8410;picked;Svíčka;(201.6, 13.9, 182.8);well;0;5;Task0;159.85;39;pickup;
+31386.5641;picked;Dinosaurus;(88.8, 10.6, 65.7);railway;0;1;Task1;0;0;pickup;
+31421.9560;picked;Pantofle;(97.3, 10.6, 202.1);post;0;2;Task1;159.52;46.53;pickup;
+31453.7111;picked;Ananas;(201.6, 13.9, 182.8);playground;106.2;2;Task1;157.36;34.37;pickup;
+31498.2206;picked;Globus;(43.1, 10.7, 108.4);cemetery;0;4;Task1;204.09;35.39;pickup;
+31536.0524;picked;Balení piv;(176.2, 10.7, 71.6);mill;0;5;Task1;211.03;46.37;pickup;
+31589.6315;picked;Šlehačka;(201.6, 13.9, 182.8);camp;0;1;Task2;0;0;pickup;
+31635.1424;picked;Figurína;(43.1, 10.7, 108.4);factory;0;2;Task2;240.69;54.35;pickup;
+31671.0348;picked;Ručník;(176.2, 10.7, 71.6);coffee;0;3;Task2;209.4;40.74;pickup;
+31700.9536;picked;Míč;(97.3, 10.6, 202.1);church;106.2;1;Task2;174.69;33.56;pickup;
+31759.1978;picked;Sýr;(88.8, 10.6, 65.7);busstation;0;5;Task2;157.95;31.64;pickup;
