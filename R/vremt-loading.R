@@ -1,24 +1,31 @@
-load_vremt_experiments <- function(folder, preprocess = TRUE){
+#' Loads all vremt experiments from given folder
+#'
+#' @param folders Which folder to load
+#' @param preprocess should the loaded files be preprocessed
+#' @param flatten in case a single experiment is found, should the results be
+#' flattened (list[[1]] becomes the result)
+#'
+#' @return list of class vremt
+#' @export
+#'
+#' @examples
+load_vremt_experiments <- function(folder, preprocess = TRUE, flatten = FALSE){
   exps <- load_experiments(folder)
   for(i_exp in 1:length(exps)){
     exp <- exps[[i_exp]]
     exp$data$actions_log <- open_actions_log(folder, exp)
     if(preprocess) exp <- preprocess_vremt(exp)
+    class(exp) <- append(class(exp), "vremt")
     exps[[i_exp]] <- exp
   }
+  if(length(exps) == 1 & flatten) exps <- exps[[1]]
   return(exps)
-}
-load_vremt_experiment <- function(folder, preprocess = TRUE){
-  exp <- load_experiment(folder)
-  exp$data$actions_log <- open_actions_log(folder, exp)
-  if(preprocess) exp <- preprocess_vremt(exp)
-  return(exp)
 }
 
 open_actions_log <- function(folder, obj){
   pth <- find_actions_log_file(folder, obj)
   if(is.null(pth)) return(NULL)
-  return(load_actions_log(pth))
+  return(load_brainvr_log(pth))
 }
 
 find_actions_log_file <- function(folder, obj){
@@ -29,9 +36,4 @@ find_actions_log_file <- function(folder, obj){
     return(NULL)
   }
   return(files[1])
-}
-
-load_actions_log <- function(pth){
-  res <- read.table(pth, skip = 9, header = TRUE, sep = ";", encoding = "UTF-8")
-  return(res)
 }
