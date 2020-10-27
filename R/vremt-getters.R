@@ -1,15 +1,26 @@
+#'
+#'
+#' @param obj
+#' @param phase
+#' @param order
+#'
+#' @return
+#' @export
+#'
+#' @examples
 get_phase_data <- function(obj, phase, order = NA){
   exp$data
-  return(ob)
+  return(obj)
 }
 
-#' Title
+#' Returns times of given phase.
 #'
-#' @param obj 
-#' @param phase 
-#' @param order 
+#' @param obj vremt object
+#' @param phase name of the phase as it stands in the experiment_log. e.g. "recall"
+#' @param order index of hte phase in case there were multiple phases
+#' of hte same number
 #'
-#' @return returns numeric(2) 
+#' @return returns numeric(2) of time start
 #' @export
 #'
 #' @examples
@@ -43,6 +54,6 @@ filter_log_timestamp <- function(df_input, timewindow){
 }
 
 get_experiment_time <- function(obj){
-  # in this version the experiment 
+  # in this version the experiment
   end <- NULL
 }
