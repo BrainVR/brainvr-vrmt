@@ -12,5 +12,5 @@ LazyData: true
 Remotes:
   github::brainvr/brainvr-reader
 Depends:
-    R (>= 2.10)
-    brainvr.reader
+  brainvr.reader(>= 0.2.0)
+RoxygenNote: 7.1.1
