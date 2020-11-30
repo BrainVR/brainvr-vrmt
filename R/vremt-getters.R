@@ -1,16 +1,23 @@
-#'
+#' Returns portion of the object relevant to thegiven phase
 #'
 #' @param obj
-#' @param phase
-#' @param order
+#' @param phase Name of the phase as appears in the experiment log in the
+#' Message parameter (e.g. exploration, recall, recallPlacement). Some phases
+#' (recall) have multiple "subphases"
+#' @param index Index of the phase (one based) in case there are multiple phases
+#' of the same name
 #'
 #' @return
 #' @export
 #'
 #' @examples
-get_phase_data <- function(obj, phase, order = NA){
-  exp$data
-  return(obj)
+get_phase_data <- function(obj, phase, index = NA){
+  phase_time <- get_phase_time(obj, phase, index)
+  phase_obj <- obj
+  phase_obj$data$actions_log$data <- filter_log_timestamp(phase_obj$data$actions_log$data, phase_time)
+  phase_obj$data$experiment_log$data <- filter_log_timestamp(phase_obj$data$experiment_log$data, phase_time)
+  phase_obj$data$position$data <- filter_log_timestamp(phase_obj$data$position$data, phase_time)
+  return(phase_obj)
 }
 
 #' Returns times of given phase.
@@ -47,6 +54,8 @@ get_phase_time <- function(obj, phase, index = NA){
   return(c(start, end))
 }
 
+
+# Helper function to filter all various logs in the vremt object
 filter_log_timestamp <- function(df_input, timewindow){
   out <- df_input[df_input$timestamp >= timewindow[1] &
                   df_input$timestamp <= timewindow[2], ]
