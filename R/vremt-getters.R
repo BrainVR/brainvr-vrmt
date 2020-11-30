@@ -14,9 +14,12 @@
 get_phase_data <- function(obj, phase, index = NA){
   phase_time <- get_phase_time(obj, phase, index)
   phase_obj <- obj
-  phase_obj$data$actions_log$data <- filter_log_timestamp(phase_obj$data$actions_log$data, phase_time)
-  phase_obj$data$experiment_log$data <- filter_log_timestamp(phase_obj$data$experiment_log$data, phase_time)
-  phase_obj$data$position$data <- filter_log_timestamp(phase_obj$data$position$data, phase_time)
+  phase_obj$data$actions_log$data <- filter_log_timestamp(
+    phase_obj$data$actions_log$data, phase_time)
+  phase_obj$data$experiment_log$data <- filter_log_timestamp(
+    phase_obj$data$experiment_log$data, phase_time)
+  phase_obj$data$position$data <- filter_log_timestamp(
+    phase_obj$data$position$data, phase_time)
   return(phase_obj)
 }
 
