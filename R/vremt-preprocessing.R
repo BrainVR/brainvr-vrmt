@@ -9,7 +9,18 @@
 preprocess_vremt <- function(obj){
   obj <- vremt_preprocess_experiment_log(obj)
   obj <- vremt_preprocess_actions_log(obj)
+  obj <- vremt_preprocess_experiment_info(obj)
   obj$data$position <- add_area_boundaries(obj$data$position, AREA_SIZE)
+  return(obj)
+}
+
+vremt_preprocess_experiment_info <- function(obj){
+  # decompose_task
+  task <- obj$data$experiment_info$Experiment$Task
+  obj$data$experiment_info$Experiment$Task <- decompose_task(task)
+  # unnest settings
+  obj$data$experiment_info$Experiment$Settings <-
+    obj$data$experiment_info$Experiment$Settings$settings
   return(obj)
 }
 
@@ -39,4 +50,21 @@ add_indices_experiment_log <- function(df_test){
                        list(df_test$Event, df_test$Message),
                        FUN = cumsum)
   return(df_test)
+}
+
+#' Decomposes task as listed in the experiment info into data.frame
+#' @param task character with task settings
+#' @return data.frame (island, locations, )
+decompose_task <- function(task){
+  task <- gsub("\\]", "", task)
+  task <- strsplit(task, "\\[")[[1]]
+  task <- task[2:length(task)] # removes first always empty task
+  out <- sapply(task, strsplit, ",", USE.NAMES = FALSE)
+  res <- data.frame(
+    island = sapply(out, `[`, 1),
+    daytime = sapply(out, `[`, 7),
+    weather = sapply(out, `[`, 8)
+  )
+  res$items <- sapply(out, function(x){x[2:6]}, simplify = FALSE)
+  return(res)
 }
