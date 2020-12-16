@@ -7,7 +7,7 @@
 preprocess_vremt(obj)
 }
 \arguments{
-\item{obj}{object of class vrem. loaded with load_vremt_experiments}
+\item{obj}{object of class vremt. loaded with load_vremt_experiments}
 }
 \value{
 
