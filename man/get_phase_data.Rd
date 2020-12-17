@@ -2,11 +2,19 @@
 % Please edit documentation in R/vremt-getters.R
 \name{get_phase_data}
 \alias{get_phase_data}
+\alias{get_recallItems_data}
+\alias{get_recallPlacement_data}
 \title{Returns portion of the object relevant to thegiven phase}
 \usage{
 get_phase_data(obj, phase, index = NA)
+
+get_recallItems_data(obj, index = NA)
+
+get_recallPlacement_data(obj, index = NA)
 }
 \arguments{
+\item{obj}{vremt object}
+
 \item{phase}{Name of the phase as appears in the experiment log in the
 Message parameter (e.g. exploration, recall, recallPlacement). Some phases
 (recall) have multiple "subphases"}
@@ -15,8 +23,15 @@ Message parameter (e.g. exploration, recall, recallPlacement). Some phases
 of the same name}
 }
 \value{
-
+vremt object with only data for a given phase
 }
 \description{
 Returns portion of the object relevant to thegiven phase
 }
+\section{Functions}{
+\itemize{
+\item \code{get_recallItems_data}: wrapper to get recallItems phase
+
+\item \code{get_recallPlacement_data}: wrapper to get recallPlacement phase
+}}
+

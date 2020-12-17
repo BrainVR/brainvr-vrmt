@@ -1,6 +1,11 @@
 exps <- load_vremt_experiments("../../inst/extdata/raw/")
 exp <- exps[[1]]
 
+test_that("Simple getters", {
+  out <- get_actions_log(exp)
+  expect_s3_class(out, "data.frame")
+})
+
 test_that("Getting phases", {
   expect_warning(obj <- get_phase_data(exp, "recall"))
   expect_null(obj)
@@ -14,4 +19,12 @@ test_that("Getting phases", {
   expect_silent(obj <- get_phase_data(exp, "recallPlacement", 1))
   expect_silent(obj2 <- get_recallPlacement_data(exp, 1))
   expect_equal(obj, obj2)
+})
+
+test_that("Geting item information", {
+  obj <- get_recallItems_data(exp, 1)
+  items <- get_collected_items(obj)
+  expect_equal(items, c("dinosaur", "globe", "ball", "cream"))
+  items <- get_collected_items(get_recallItems_data(exp, 2))
+  expect_length(items, 5)
 })

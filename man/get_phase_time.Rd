@@ -12,7 +12,7 @@ get_phase_time(obj, phase, index = NA)
 \item{phase}{name of the phase as it stands in the experiment_log. e.g. "recall"}
 
 \item{order}{index of hte phase in case there were multiple phases
-of hte same number}
+of the same number}
 }
 \value{
 returns numeric(2) of time start

@@ -41,7 +41,7 @@ get_recallPlacement_data <- function(obj, index = NA){
 #' @param obj vremt object
 #' @param phase name of the phase as it stands in the experiment_log. e.g. "recall"
 #' @param order index of hte phase in case there were multiple phases
-#' of hte same number
+#' of the same number
 #'
 #' @return returns numeric(2) of time start
 #' @export
@@ -82,14 +82,34 @@ get_experiment_time <- function(obj){
   end <- NULL
 }
 
-#' Title
+#' Returns action long
 #'
-#' @param phase_obj All collected items will be returned
+#'
+#' @param obj vremt object
+#'
+#' @return
+#' @export
+get_actions_log <- function(obj){
+  return(obj$data$actions_log$data)
+}
+
+#' Returns list of collected items from given object action log
+#'
+#' @param phase_obj Generally preselected vremt object. If you pass the entire
+#' object, not just particular phase, all items will be returned.
 #'
 #' @return
 #' @export
 #'
 #' @examples
 get_collected_items <- function(phase_obj){
+  df_actions <- get_actions_log(phase_obj)
 
+  collected_items <- df_actions$item_name[df_actions$action == "picked"]
+  dropped_items <- df_actions$item_name[df_actions$action == "dropped"]
+  # removes dropped items from collected items
+  if (length(dropped_items) > 0) {
+    collected_items <- setdiff_unique(collected_items, dropped_items)
+  }
+  return(collected_items)
 }
