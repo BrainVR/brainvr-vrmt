@@ -120,3 +120,27 @@ get_collected_items <- function(phase_obj){
   }
   return(collected_items)
 }
+
+
+#' Returns the task settings for the object. If index is passed, returns only
+#' settings for a particular trial
+#'
+#' @param obj vremt object
+#' @param index numeric designation of the task order (usually between 1-3)
+#'
+#' @return list with items and locations fields
+#' @export
+#'
+#' @examples
+get_task_settings <- function(obj, index = NA){
+  settings <- obj$data$experiment_info$Experiment$Task
+  if(is.na(index)){
+    return(settings)
+  }
+  task <- settings[index, ]
+  if(is.na(task$island)){
+    warning("Task of index ", index, " does not exist")
+    return(NULL)
+  }
+  return(task)
+}

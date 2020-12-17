@@ -9,3 +9,6 @@ vremt_collection_performance <- function(obj, index){
 vremt_placemnt_performance <- function(obj, index){
 
 }
+
+
+

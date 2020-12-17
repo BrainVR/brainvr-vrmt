@@ -27,6 +27,16 @@ test_that("Getting phases", {
   expect_null(obj)
 })
 
+test_that("Getting tasks", {
+  expect_silent(task <- get_task_settings(exp))
+  expect_s3_class(task, "data.frame")
+  expect_silent(task <- get_task_settings(exp, 1))
+  expect_equal(nrow(task), 1)
+
+  expect_warning(task <- get_task_settings(exp, 4))
+  expect_null(task)
+})
+
 test_that("Geting item information", {
   obj <- get_recallItems_data(exp, 1)
   items <- get_collected_items(obj)
