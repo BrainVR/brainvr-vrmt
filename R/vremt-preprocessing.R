@@ -38,6 +38,7 @@ vremt_preprocess_actions_log <- function(obj){
   df_actions <- obj$data$actions_log$data
   colnames(df_actions) <- tolower(colnames(df_actions))
   df_actions[, ncol(df_actions)] <- NULL
+  df_actions$item_name <- convert_czech_to_en(df_actions$item_name)
   obj$data$actions_log$data <- df_actions
   return(obj)
 }
@@ -102,5 +103,5 @@ convert_czech_to_en <- function(items) {
   en <- sapply(items, function(x) {
     ITEM_CODES$name_en[ITEM_CODES$name_cz == x]
   }, simplify = TRUE)
-  return(items)
+  return(en)
 }
