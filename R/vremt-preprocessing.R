@@ -65,6 +65,42 @@ decompose_task <- function(task){
     daytime = sapply(out, `[`, 7),
     weather = sapply(out, `[`, 8)
   )
-  res$items <- sapply(out, function(x){x[2:6]}, simplify = FALSE)
+  res$locations <- sapply(out, function(x){x[2:6]}, simplify = FALSE)
+  res$items <- sapply(res$locations, convert_location_to_item, simplify = FALSE)
   return(res)
+}
+
+
+#' Converts location codes to item codes
+#'
+#' @description Each item only appears in a single location. This function then
+#' conversts a vector of locations to a vector of items using the
+#' \link{ITEM_CODES} data.
+#'
+#' @param locations english locations
+#'
+#' @return vector of characters with english codes of location names
+#' @export
+#'
+#' @examples
+convert_location_to_item <- function(locations){
+  items <- sapply(locations, function(x) {
+    LOCATION_ITEM$item[LOCATION_ITEM$location == x]
+  }, simplify = TRUE)
+  return(items)
+}
+
+#' Converts czech names into english
+#'
+#' @param items
+#'
+#' @return
+#' @export
+#'
+#' @examples
+convert_czech_to_en <- function(items) {
+  en <- sapply(items, function(x) {
+    ITEM_CODES$name_en[ITEM_CODES$name_cz == x]
+  }, simplify = TRUE)
+  return(items)
 }
