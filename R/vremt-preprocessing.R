@@ -87,7 +87,7 @@ decompose_task <- function(task){
 convert_location_to_item <- function(locations){
   items <- sapply(locations, function(x) {
     LOCATION_ITEM$item[LOCATION_ITEM$location == x]
-  }, simplify = TRUE)
+  }, simplify = TRUE, USE.NAMES = FALSE)
   return(items)
 }
 
@@ -102,6 +102,6 @@ convert_location_to_item <- function(locations){
 convert_czech_to_en <- function(items) {
   en <- sapply(items, function(x) {
     ITEM_CODES$name_en[ITEM_CODES$name_cz == x]
-  }, simplify = TRUE)
+  }, simplify = TRUE, USE.NAMES = FALSE)
   return(en)
 }

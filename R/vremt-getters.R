@@ -134,13 +134,37 @@ get_collected_items <- function(phase_obj){
 #' @examples
 get_task_settings <- function(obj, index = NA){
   settings <- obj$data$experiment_info$Experiment$Task
-  if(is.na(index)){
-    return(settings)
-  }
+  if(is.na(index)) return(settings)
   task <- settings[index, ]
   if(is.na(task$island)){
     warning("Task of index ", index, " does not exist")
     return(NULL)
   }
   return(task)
+}
+
+#' Returns the recall task index in the given object
+#'
+#' @description The recallPhases are randomized, with the specific task being
+#' encoded in the particular pohase's action log. This extract what settings
+#' ran during this particular phase. Only works on recall phase properly.
+#' Exploration and pickup phases come in Task 0 1 2 ordcer always. This returns
+#' ONE based task order for less interference with R subsetting.
+#'
+#' @param phase_obj filtered phase vremt object. Use get_phase_
+#'
+#' @return ONE BASED integer. This
+#' @export
+#'
+#' @examples
+get_phase_task_index <- function(phase_obj, zero_based = TRUE){
+  df_actions <- get_actions_log(phase_obj)
+  task_cities <- df_actions$taskcity
+  if(any(task_cities != task_cities[1])){
+    warning("there are multiple tasks in the given object. Filter it first so",
+            "that it only contains a single task")
+    return(NULL)
+  }
+  index <- as.integer(gsub("Task", "", task_cities[1])) + 1
+  return(index)
 }
