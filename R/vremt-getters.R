@@ -51,15 +51,23 @@ get_phase_time <- function(obj, phase, index = NA){
   df_phases <- get_experiment_log(obj)
   df_phases <- df_phases[df_phases$Sender == "phase", ]
   df_phases <- df_phases[df_phases$Message == phase, ]
+  if(nrow(df_phases) == 0){
+    warning("There are no phases of name ", phase)
+    return(NULL)
+  }
   if(is.na(index)){
     if(nrow(df_phases > 3)){
-      warning("There are multiple phases of this name. Need to speciy the index")
+      warning("There are multiple phases ", phase, ". Need to speciy the index")
       return(NULL)
     }
   } else {
     df_phases <- df_phases[df_phases$Index == index, ]
   }
-  if(nrow(df_phases) == 0) return(NULL)
+  if(nrow(df_phases) == 0){
+    warning("There are no phases ", phase, " at index ", index)
+    return(NULL)
+  }
+  # TODO - this is kinda weird and COULD be broken in some cases
   if(nrow(df_phases) > 3){
     warning("Multiple phases ", phase, " have the index ", index)
     return(NULLL)
@@ -83,7 +91,6 @@ get_experiment_time <- function(obj){
 }
 
 #' Returns action long
-#'
 #'
 #' @param obj vremt object
 #'

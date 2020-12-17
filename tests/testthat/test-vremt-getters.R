@@ -1,5 +1,5 @@
 exps <- load_vremt_experiments("../../inst/extdata/raw/")
-exp <- exps[[1]]
+exp <- exps[[3]]
 
 test_that("Simple getters", {
   out <- get_actions_log(exp)
@@ -19,6 +19,12 @@ test_that("Getting phases", {
   expect_silent(obj <- get_phase_data(exp, "recallPlacement", 1))
   expect_silent(obj2 <- get_recallPlacement_data(exp, 1))
   expect_equal(obj, obj2)
+
+  expect_warning(obj <- get_phase_data(exp, "non existent phase name"))
+  expect_null(obj)
+
+  expect_warning(obj <- get_phase_data(exp, "recallItems", 999))
+  expect_null(obj)
 })
 
 test_that("Geting item information", {
