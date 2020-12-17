@@ -1,18 +1,19 @@
 #' Returns portion of the object relevant to thegiven phase
 #'
-#' @param obj
+#' @param obj vremt object
 #' @param phase Name of the phase as appears in the experiment log in the
 #' Message parameter (e.g. exploration, recall, recallPlacement). Some phases
 #' (recall) have multiple "subphases"
 #' @param index Index of the phase (one based) in case there are multiple phases
 #' of the same name
 #'
-#' @return
+#' @return vremt object with only data for a given phase
 #' @export
 #'
 #' @examples
 get_phase_data <- function(obj, phase, index = NA){
   phase_time <- get_phase_time(obj, phase, index)
+  if(is.null(phase_time)) return(NULL)
   phase_obj <- obj
   phase_obj$data$actions_log$data <- filter_log_timestamp(
     phase_obj$data$actions_log$data, phase_time)
@@ -21,6 +22,18 @@ get_phase_data <- function(obj, phase, index = NA){
   phase_obj$data$position$data <- filter_log_timestamp(
     phase_obj$data$position$data, phase_time)
   return(phase_obj)
+}
+
+#' @describeIn get_phase_data wrapper to get recallItems phase
+#' @export
+get_recallItems_data <- function(obj, index = NA){
+  return(get_phase_data(obj, "recallItems", index))
+}
+
+#' @describeIn get_phase_data wrapper to get recallPlacement phase
+#' @export
+get_recallPlacement_data <- function(obj, index = NA){
+  return(get_phase_data(obj, "recallPlacement", index))
 }
 
 #' Returns times of given phase.
@@ -57,7 +70,6 @@ get_phase_time <- function(obj, phase, index = NA){
   return(c(start, end))
 }
 
-
 # Helper function to filter all various logs in the vremt object
 filter_log_timestamp <- function(df_input, timewindow){
   out <- df_input[df_input$timestamp >= timewindow[1] &
@@ -68,4 +80,16 @@ filter_log_timestamp <- function(df_input, timewindow){
 get_experiment_time <- function(obj){
   # in this version the experiment
   end <- NULL
+}
+
+#' Title
+#'
+#' @param phase_obj All collected items will be returned
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_collected_items <- function(phase_obj){
+
 }
