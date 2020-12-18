@@ -190,7 +190,9 @@ get_location_position <- function(locations){
             " do not exist.")
     return(NULL)
   }
-  out <- pos[, c("position_x", "position_z", "position_y")]
+  out <- pos[, c("location", "position_x", "position_z", "position_y")]
+  rownames(out) <- out$location
+  out$location <- NULL
   if(nrow(out) == 1) out <- unlist(out)
   return(out)
 }
@@ -204,7 +206,9 @@ get_item_position <- function(items){
             " do not exist.")
     return(NULL)
   }
-  out <- pos[, c("position_x", "position_z", "position_y")]
+  out <- pos[, c("item", "position_x", "position_z", "position_y")]
+  rownames(out) <- out$item
+  out$item <- NULL
   if(nrow(out) == 1) out <- unlist(out)
   return(out)
 }

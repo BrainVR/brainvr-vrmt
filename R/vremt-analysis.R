@@ -7,12 +7,11 @@ vremt_collection_performance <- function(obj, index){
   phase_task_index <- get_phase_task_index(phase_obj)
   task <- get_task_settings(phase_obj, phase_task_index)
   collected_items <- get_collected_items(phase_obj)
-  res <- list()
-  res$item_performance <- item_performance(task$items[[1]], collected_items)
+  res <- item_performance(task$items[[1]], collected_items)
   # Time
   # Number of drops
   # Path?
-  return(res)
+  return(as.data.frame(res))
 }
 
 vremt_placement_performance <- function(obj, index){
@@ -24,22 +23,34 @@ vremt_placement_performance <- function(obj, index){
   }
   phase_task_index <- get_phase_task_index(phase_obj)
   task <- get_task_settings(phase_obj, phase_task_index)
+  df_actions <- get_actions_log(recall)
 
-  df_actions <- get_actions_log(phase_obj)
   # participants can pick the object back and then drop it elsewhere, need to only
   # count the last drop
   drop <- select_last_drops(df_actions)
 
-  res <- list()
-  # order
-  correct_order <- task$items[[1]]
-  dropped_order <- drop$item_name
-  res$drop_order <- sapply(correct_order, function(x){
-    which(x == correct_order) - which(x == dropped_order)
-  })
-  # location
+  #distance
+  res <- as.data.frame(unity_vector_to_numeric(drop$position),
+                       row.names = drop$item_name)
+  colnames(res) <- c("position_x", "position_z", "position_y")
+  correct_position <- get_item_position(task$items[[1]])
 
-  # path? Thats weird, as path should not mean anything
+  target_distance <- sapply(row.names(res), function(x){
+    euclid_distance(as.numeric(res[x,]), as.numeric(correct_position[x,]))
+    }
+  )
+  res <-  merge(res, as.data.frame(target_distance), by = "row.names")
+
+  # order
+  df_order <- drop[order(drop$timestamp), c("item_name", "location")]
+  df_order$order <- 1:nrow(df_order) #needs to be ordered (see line above)
+  df_order$correct_order <- match(drop$item_name, task$items[[1]])
+  df_order$order_error <- df_order$order - df_order$correct_order
+  df_order <- merge(df_order, LOCATION_ITEM[, c("location", "arm")], by = "location")
+
+  res <- merge(df_order, res, by.x = "item_name", by.y = "Row.names")
+  res <- merge(res, LOCATION_ITEM[, c("location", "arm", "item")],
+               by.x = "item_name", by.y = "item", all.x = TRUE, suffixes = c("", "_correct"))
   return(res)
 }
 
