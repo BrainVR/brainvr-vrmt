@@ -5,9 +5,12 @@
 #'
 #' @format A data frame with 15 values and 3 variables:
 #' \describe{
-#'   \item{arm}{Numbering order of the arm with the location (1-5)}
 #'   \item{location}{English name of the location}
 #'   \item{item}{Name of the item in EN code}
+#'   \item{arm}{Numbering order of the arm with the location (1-5)}
+#'   \item{position_x}{Item's X position}
+#'   \item{position_y}{Item's Y position}
+#'   \item{position_z}{Item's Z (height) position}
 #'   ...
 #' }
 "LOCATION_ITEM"
