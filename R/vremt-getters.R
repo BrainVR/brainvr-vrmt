@@ -169,7 +169,6 @@ get_phase_task_index <- function(phase_obj, zero_based = TRUE){
   return(index)
 }
 
-
 #' Returns the position of a particular location (or item)
 #'
 #' @description either location or item has to be passed. The returned location
@@ -177,25 +176,35 @@ get_phase_task_index <- function(phase_obj, zero_based = TRUE){
 #' a location and a globe as an item have the same position)
 #'
 #' @param location name of the location defining the location
-#' @param item name of the item
 #'
-#' @return named numeric vector or NULL if no location of such name is found
+#' @return named numeric vector or NULL if no location of such name is found or
+#' a data.frame if
 #' @export
 #'
 #' @examples
 #' get_location_position("cemetery")
-#' get_location_position(item = "globe")
-get_location_position <- function(location = NA, item = NA){
-  if(is.na(location) == is.na(item)){
-    warning("Need to pass either location or item as a parameter")
+get_location_position <- function(locations){
+  pos <- LOCATION_ITEM[LOCATION_ITEM$location %in% locations, ]
+  if(nrow(pos) != length(locations)){
+    warning("Locations of name ", locations[!(locations %in% LOCATION_ITEM$location)],
+            " do not exist.")
     return(NULL)
   }
-  selector <- ifelse(is.na(item), "location", "item")
-  value <- ifelse(is.na(item), location, item)
-  pos <- LOCATION_ITEM[LOCATION_ITEM[[selector]] == value, ]
-  if(nrow(pos) == 0){
-    warning(selector, " of name ", value, " does not exist.")
+  out <- pos[, c("position_x", "position_z", "position_y")]
+  if(nrow(out) == 1) out <- unlist(out)
+  return(out)
+}
+
+#' @describeIn get_location_position getting item position
+#' @param item name of the item
+get_item_position <- function(items){
+  pos <- LOCATION_ITEM[LOCATION_ITEM$item %in% items, ]
+  if(nrow(pos) != length(items)){
+    warning("Items of name ", items[!(items %in% LOCATION_ITEM$item)],
+            " do not exist.")
     return(NULL)
   }
-  return(unlist(pos[, c("position_x", "position_z", "position_y")]))
+  out <- pos[, c("position_x", "position_z", "position_y")]
+  if(nrow(out) == 1) out <- unlist(out)
+  return(out)
 }

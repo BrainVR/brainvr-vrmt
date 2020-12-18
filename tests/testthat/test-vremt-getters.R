@@ -47,13 +47,19 @@ test_that("Geting item information", {
 
 test_that("Getting item and location positions", {
   expect_silent(res <- get_location_position("cemetery"))
-  expect_silent(res2 <- get_location_position(item = "globe"))
-  expect_length(res, 3)
+  expect_silent(res2 <- get_item_position("globe"))
+  expect_vector(res, size = 3)
   expect_equal(res, res2)
 
   expect_warning(res <- get_location_position("non existent location"))
   expect_null(res)
 
-  expect_warning(res <- get_location_position("cemetery", "globe"))
+  expect_warning(res <- get_location_position(c("cemetery", "globe")))
   expect_null(res)
+
+  expect_silent(res <- get_location_position(c("cemetery", "hotel")))
+  expect_s3_class(res, "data.frame")
+
+  expect_silent(res <- get_item_position(c("globe", "beer")))
+  expect_s3_class(res, "data.frame")
 })

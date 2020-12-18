@@ -2,9 +2,12 @@
 % Please edit documentation in R/vremt-getters.R
 \name{get_location_position}
 \alias{get_location_position}
+\alias{get_item_position}
 \title{Returns the position of a particular location (or item)}
 \usage{
-get_location_position(location = NA, item = NA)
+get_location_position(locations)
+
+get_item_position(items)
 }
 \arguments{
 \item{location}{name of the location defining the location}
@@ -12,14 +15,19 @@ get_location_position(location = NA, item = NA)
 \item{item}{name of the item}
 }
 \value{
-named numeric vector or NULL if no location of such name is found
+named numeric vector or NULL if no location of such name is found or
+a data.frame if
 }
 \description{
 either location or item has to be passed. The returned location
 is the same for both location name and item name (e.g. both cemetery as
 a location and a globe as an item have the same position)
 }
+\section{Functions}{
+\itemize{
+\item \code{get_item_position}: getting item position
+}}
+
 \examples{
 get_location_position("cemetery")
-get_location_position(item = "globe")
 }
