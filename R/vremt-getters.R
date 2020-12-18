@@ -168,3 +168,34 @@ get_phase_task_index <- function(phase_obj, zero_based = TRUE){
   index <- as.integer(gsub("Task", "", task_cities[1])) + 1
   return(index)
 }
+
+
+#' Returns the position of a particular location (or item)
+#'
+#' @description either location or item has to be passed. The returned location
+#' is the same for both location name and item name (e.g. both cemetery as
+#' a location and a globe as an item have the same position)
+#'
+#' @param location name of the location defining the location
+#' @param item name of the item
+#'
+#' @return named numeric vector or NULL if no location of such name is found
+#' @export
+#'
+#' @examples
+#' get_location_position("cemetery")
+#' get_location_position(item = "globe")
+get_location_position <- function(location = NA, item = NA){
+  if(is.na(location) == is.na(item)){
+    warning("Need to pass either location or item as a parameter")
+    return(NULL)
+  }
+  selector <- ifelse(is.na(item), "location", "item")
+  value <- ifelse(is.na(item), location, item)
+  pos <- LOCATION_ITEM[LOCATION_ITEM[[selector]] == value, ]
+  if(nrow(pos) == 0){
+    warning(selector, " of name ", value, " does not exist.")
+    return(NULL)
+  }
+  return(unlist(pos[, c("position_x", "position_z", "position_y")]))
+}

@@ -44,3 +44,16 @@ test_that("Geting item information", {
   items <- get_collected_items(get_recallItems_data(exp, 2))
   expect_length(items, 5)
 })
+
+test_that("Getting item and location positions", {
+  expect_silent(res <- get_location_position("cemetery"))
+  expect_silent(res2 <- get_location_position(item = "globe"))
+  expect_length(res, 3)
+  expect_equal(res, res2)
+
+  expect_warning(res <- get_location_position("non existent location"))
+  expect_null(res)
+
+  expect_warning(res <- get_location_position("cemetery", "globe"))
+  expect_null(res)
+})
