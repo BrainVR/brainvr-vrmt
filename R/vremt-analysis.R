@@ -1,3 +1,12 @@
+#' Analyses the recall item collection performance
+#'
+#' @param obj vremt object
+#' @param index order of the phase to analyse
+#'
+#' @return list with resutls
+#' @export
+#'
+#' @examples
 vremt_collection_performance <- function(obj, index){
   phase_obj <- get_recallItems_data(obj, index)
   if(is.null(phase_obj)){
@@ -14,6 +23,15 @@ vremt_collection_performance <- function(obj, index){
   return(as.data.frame(res))
 }
 
+#' Analyses the recall placemnent phase
+#'
+#' @param obj vremt object
+#' @param index order of the phase to analyse
+#'
+#' @return list with results
+#' @export
+#'
+#' @examples
 vremt_placement_performance <- function(obj, index){
   # Correct order
   phase_obj <- get_recallPlacement_data(obj, index)
@@ -29,7 +47,7 @@ vremt_placement_performance <- function(obj, index){
   # count the last drop
   drop <- select_last_drops(df_actions)
 
-  #distance
+  # placemnt distance error
   res <- as.data.frame(unity_vector_to_numeric(drop$position),
                        row.names = drop$item_name)
   colnames(res) <- c("position_x", "position_z", "position_y")
@@ -41,7 +59,7 @@ vremt_placement_performance <- function(obj, index){
   )
   res <-  merge(res, as.data.frame(target_distance), by = "row.names")
 
-  # order
+  # order error
   df_order <- drop[order(drop$timestamp), c("item_name", "location")]
   df_order$order <- 1:nrow(df_order) #needs to be ordered (see line above)
   df_order$correct_order <- match(drop$item_name, task$items[[1]])
@@ -49,6 +67,8 @@ vremt_placement_performance <- function(obj, index){
   df_order <- merge(df_order, LOCATION_ITEM[, c("location", "arm")], by = "location")
 
   res <- merge(df_order, res, by.x = "item_name", by.y = "Row.names")
+
+  ## Adds the correct solution
   res <- merge(res, LOCATION_ITEM[, c("location", "arm", "item")],
                by.x = "item_name", by.y = "item", all.x = TRUE, suffixes = c("", "_correct"))
   return(res)
@@ -63,6 +83,7 @@ select_last_drops <- function(df_actions){
   return(drop)
 }
 
+# Wrapper to help the collection performacne analyse
 item_performance <- function(wanted_items, collected_items) {
   res <- list()
   res$correct_items <- intersect_unique(wanted_items, collected_items)
