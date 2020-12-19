@@ -10,12 +10,12 @@
 #' @export
 #'
 #' @examples
-plot_path.vremt <- function(obj, background = FALSE, ...){
+plot_vremt_path <- function(obj, background = FALSE, ...){
   position <- obj$data$position
   g <- ggplot() +
     geom_navr_limits(position)
   if(background){
-    g <- g + geom_navr_background(IMG_BACKGROUND_PATH,
+    g <- g + geom_navr_background(get_background_image(),
                                   xlim = IMG_BOUNDARIES$x,
                                   ylim = IMG_BOUNDARIES$y)
   }
