@@ -4,10 +4,11 @@
 \alias{vremt_placement_performance}
 \title{Analyses the recall placemnent phase}
 \usage{
-vremt_placement_performance(obj, index)
+vremt_placement_performance(recallPlacement, index)
 }
 \arguments{
-\item{obj}{vremt object}
+\item{recallPlacement}{vremt placement object got with
+\code{\link{get_recallPlacement_data}}}
 
 \item{index}{order of the phase to analyse}
 }

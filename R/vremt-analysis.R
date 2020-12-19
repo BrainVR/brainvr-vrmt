@@ -1,21 +1,17 @@
 #' Analyses the recall item collection performance
 #'
-#' @param obj vremt object
+#' @param recallItems vremt recallItem object receoved with
+#' \code{\link{get_recallItems_data}}
 #' @param index order of the phase to analyse
 #'
 #' @return list with resutls
 #' @export
 #'
 #' @examples
-vremt_collection_performance <- function(obj, index){
-  phase_obj <- get_recallItems_data(obj, index)
-  if(is.null(phase_obj)){
-    warning("There is not a recall at index ", index)
-    return(NULL)
-  }
-  phase_task_index <- get_phase_task_index(phase_obj)
-  task <- get_task_settings(phase_obj, phase_task_index)
-  collected_items <- get_collected_items(phase_obj)
+vremt_collection_performance <- function(recallItems, index){
+  phase_task_index <- get_phase_task_index(recallItems)
+  task <- get_task_settings(recallItems, phase_task_index)
+  collected_items <- get_collected_items(recallItems)
   res <- item_performance(task$items[[1]], collected_items)
   # Time
   # Number of drops
@@ -25,23 +21,18 @@ vremt_collection_performance <- function(obj, index){
 
 #' Analyses the recall placemnent phase
 #'
-#' @param obj vremt object
+#' @param recallPlacement vremt placement object got with
+#' \code{\link{get_recallPlacement_data}}
 #' @param index order of the phase to analyse
 #'
 #' @return list with results
 #' @export
 #'
 #' @examples
-vremt_placement_performance <- function(obj, index){
-  # Correct order
-  phase_obj <- get_recallPlacement_data(obj, index)
-  if(is.null(phase_obj)){
-    warning("There is not a recall at index ", index)
-    return(NULL)
-  }
-  phase_task_index <- get_phase_task_index(phase_obj)
-  task <- get_task_settings(phase_obj, phase_task_index)
-  df_actions <- get_actions_log(phase_obj)
+vremt_placement_performance <- function(recallPlacement, index){
+  phase_task_index <- get_phase_task_index(recallPlacement)
+  task <- get_task_settings(recallPlacement, phase_task_index)
+  df_actions <- get_actions_log(recallPlacement)
 
   # participants can pick the object back and then drop it elsewhere, need to only
   # count the last drop
