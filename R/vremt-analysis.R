@@ -41,7 +41,7 @@ vremt_placement_performance <- function(obj, index){
   }
   phase_task_index <- get_phase_task_index(phase_obj)
   task <- get_task_settings(phase_obj, phase_task_index)
-  df_actions <- get_actions_log(recall)
+  df_actions <- get_actions_log(phase_obj)
 
   # participants can pick the object back and then drop it elsewhere, need to only
   # count the last drop
