@@ -2,6 +2,8 @@
 
 export(convert_czech_to_en)
 export(convert_location_to_item)
+export(geom_vremt_location)
+export(geom_vremt_placements)
 export(get_actions_log)
 export(get_collected_items)
 export(get_location_position)
