@@ -1,1 +1,1 @@
-AREA_SIZE <- list(x = c(25,225), y = c(25, 225))
+AREA_BOUNDARIES <- list(x = c(0,250), y = c(0, 250))

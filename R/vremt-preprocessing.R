@@ -10,7 +10,7 @@ preprocess_vremt <- function(obj){
   obj <- vremt_preprocess_experiment_log(obj)
   obj <- vremt_preprocess_actions_log(obj)
   obj <- vremt_preprocess_experiment_info(obj)
-  obj$data$position <- add_area_boundaries(obj$data$position, AREA_SIZE)
+  obj$data$position <- add_area_boundaries(obj$data$position, AREA_BOUNDARIES)
   return(obj)
 }
 
