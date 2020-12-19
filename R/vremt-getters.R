@@ -175,7 +175,10 @@ get_phase_task_index <- function(phase_obj, zero_based = TRUE){
 #' is the same for both location name and item name (e.g. both cemetery as
 #' a location and a globe as an item have the same position)
 #'
-#' @param location name of the location defining the location
+#' @param locations name of the location defining the location
+#' @param simplify only valid in case of a single location return. If true,
+#' only a vector is returned. Otherwise even single location is returned as a
+#' data.frame
 #'
 #' @return named numeric vector or NULL if no location of such name is found or
 #' a data.frame if
@@ -183,7 +186,7 @@ get_phase_task_index <- function(phase_obj, zero_based = TRUE){
 #'
 #' @examples
 #' get_location_position("cemetery")
-get_location_position <- function(locations){
+get_location_position <- function(locations, simplify = TRUE){
   pos <- LOCATION_ITEM[LOCATION_ITEM$location %in% locations, ]
   if(nrow(pos) != length(locations)){
     warning("Locations of name ", locations[!(locations %in% LOCATION_ITEM$location)],
@@ -193,13 +196,13 @@ get_location_position <- function(locations){
   out <- pos[, c("location", "position_x", "position_z", "position_y")]
   rownames(out) <- out$location
   out$location <- NULL
-  if(nrow(out) == 1) out <- unlist(out)
+  if(nrow(out) == 1 && simplify) out <- unlist(out)
   return(out)
 }
 
 #' @describeIn get_location_position getting item position
 #' @param item name of the item
-get_item_position <- function(items){
+get_item_position <- function(items, simplify = TRUE){
   pos <- LOCATION_ITEM[LOCATION_ITEM$item %in% items, ]
   if(nrow(pos) != length(items)){
     warning("Items of name ", items[!(items %in% LOCATION_ITEM$item)],
@@ -209,6 +212,6 @@ get_item_position <- function(items){
   out <- pos[, c("item", "position_x", "position_z", "position_y")]
   rownames(out) <- out$item
   out$item <- NULL
-  if(nrow(out) == 1) out <- unlist(out)
+  if(nrow(out) == 1 && simplify) out <- unlist(out)
   return(out)
 }

@@ -46,20 +46,28 @@ test_that("Geting item information", {
 })
 
 test_that("Getting item and location positions", {
-  expect_silent(res <- get_location_position("cemetery"))
-  expect_silent(res2 <- get_item_position("globe"))
+  location <- "cemetery"
+  item <- "globe"
+  expect_silent(res <- get_location_position(location))
+  expect_silent(res2 <- get_item_position(item))
   expect_vector(res, size = 3)
   expect_equal(res, res2)
+
+  expect_silent(res <- get_location_position(location, simplify = FALSE))
+  expect_s3_class(res, "data.frame")
+
+  expect_silent(res <- get_item_position(item, simplify = FALSE))
+  expect_s3_class(res, "data.frame")
 
   expect_warning(res <- get_location_position("non existent location"))
   expect_null(res)
 
-  expect_warning(res <- get_location_position(c("cemetery", "globe")))
+  expect_warning(res <- get_location_position(c(location, item)))
   expect_null(res)
 
-  expect_silent(res <- get_location_position(c("cemetery", "hotel")))
+  expect_silent(res <- get_location_position(c(location, "hotel")))
   expect_s3_class(res, "data.frame")
 
-  expect_silent(res <- get_item_position(c("globe", "beer")))
+  expect_silent(res <- get_item_position(c(item, "beer")))
   expect_s3_class(res, "data.frame")
 })

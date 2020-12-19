@@ -5,12 +5,16 @@
 \alias{get_item_position}
 \title{Returns the position of a particular location (or item)}
 \usage{
-get_location_position(locations)
+get_location_position(locations, simplify = TRUE)
 
-get_item_position(items)
+get_item_position(items, simplify = TRUE)
 }
 \arguments{
-\item{location}{name of the location defining the location}
+\item{locations}{name of the location defining the location}
+
+\item{simplify}{only valid in case of a single location return. If true,
+only a vector is returned. Otherwise even single location is returned as a
+data.frame}
 
 \item{item}{name of the item}
 }
