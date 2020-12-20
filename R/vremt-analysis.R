@@ -52,14 +52,15 @@ vremt_placement_performance <- function(recallPlacement, index){
     euclid_distance(as.numeric(res[x,]), as.numeric(correct_position[x,]))
     }
   )
-  res <-  merge(res, as.data.frame(target_distance), by = "row.names")
+  res <- merge(res, as.data.frame(target_distance), by = "row.names")
 
   # order error
   df_order <- drop[order(drop$timestamp), c("item_name", "location")]
   df_order$order <- 1:nrow(df_order) #needs to be ordered (see line above)
   df_order$correct_order <- match(drop$item_name, task$items[[1]])
   df_order$order_error <- df_order$order - df_order$correct_order
-  df_order <- merge(df_order, LOCATION_ITEM[, c("location", "arm")], by = "location")
+  df_order <- merge(df_order, LOCATION_ITEM[, c("location", "arm")],
+                    by = "location", all.x = TRUE)
 
   res <- merge(df_order, res, by.x = "item_name", by.y = "Row.names")
 
