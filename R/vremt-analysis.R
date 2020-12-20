@@ -11,12 +11,16 @@
 vremt_collection_performance <- function(recallItems, index){
   phase_task_index <- get_phase_task_index(recallItems)
   task <- get_task_settings(recallItems, phase_task_index)
-  collected_items <- get_collected_items(recallItems)
-  res <- item_performance(task$items[[1]], collected_items)
+  res <- list()
+
+  res$collected_items <- get_collected_items(recallItems)
+  res$wanted_items <- task$items[[1]]
+  res$summary <- item_performance(res$wanted_items, res$collected_items)
+  res$summary <- as.data.frame(res$summary)
   # Time
   # Number of drops
   # Path?
-  return(as.data.frame(res))
+  return(res)
 }
 
 #' Analyses the recall placemnent phase
