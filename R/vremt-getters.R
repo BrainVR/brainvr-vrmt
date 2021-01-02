@@ -14,14 +14,31 @@
 get_phase_data <- function(obj, phase, index = NA){
   phase_time <- get_phase_time(obj, phase, index)
   if(is.null(phase_time)) return(NULL)
-  phase_obj <- obj
-  phase_obj$data$actions_log$data <- filter_log_timestamp(
-    phase_obj$data$actions_log$data, phase_time)
-  phase_obj$data$experiment_log$data <- filter_log_timestamp(
-    phase_obj$data$experiment_log$data, phase_time)
-  phase_obj$data$position$data <- filter_log_timestamp(
-    phase_obj$data$position$data, phase_time)
+  phase_obj <- filter_times(obj, phase_time)
   return(phase_obj)
+}
+
+#' Filters the VREMT object for particular timestamps Keeps all the list
+#' information, such as settings etc.
+#'
+#' @param obj vremt object
+#' @param times times which to filter
+#'
+#' @importFrom navr filter_times
+#'
+#' @return vremt object with only filtered times
+#' @export
+#'
+#' @examples
+filter_times.vremt <- function(obj, times){
+  filtered_obj <- obj
+  filtered_obj$data$actions_log$data <- filter_log_timestamp(
+    filtered_obj$data$actions_log$data, times)
+  filtered_obj$data$experiment_log$data <- filter_log_timestamp(
+    filtered_obj$data$experiment_log$data, times)
+  filtered_obj$data$position$data <- filter_log_timestamp(
+    filtered_obj$data$position$data, times)
+  return(filtered_obj)
 }
 
 #' @describeIn get_phase_data wrapper to get recallItems phase
