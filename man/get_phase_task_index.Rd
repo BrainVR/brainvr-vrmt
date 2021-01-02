@@ -4,10 +4,14 @@
 \alias{get_phase_task_index}
 \title{Returns the recall task index in the given object}
 \usage{
-get_phase_task_index(phase_obj, zero_based = TRUE)
+get_phase_task_index(phase_obj, zero_based = FALSE)
 }
 \arguments{
 \item{phase_obj}{filtered phase vremt object. Use get_phase_}
+
+\item{zero_based}{task settings in the unity is reported as
+zero based. should the task settings be returned as is in the log or returned
+as a 1 based index (default)}
 }
 \value{
 ONE BASED integer. This

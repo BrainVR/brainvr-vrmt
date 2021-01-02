@@ -121,6 +121,20 @@ get_collected_items <- function(phase_obj){
   return(collected_items)
 }
 
+#' Returns the settings for the given phase object
+#'
+#' @description wrapper around get_task_settings and get_phase_task_index.
+#' @param phase_obj
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_phase_task_settings <- function(phase_obj){
+  index <- get_phase_task_index(phase_obj)
+  if(!is.null(index)) settings <- get_task_settings(phase_obj, index)
+  return(settings)
+}
 
 #' Returns the task settings for the object. If index is passed, returns only
 #' settings for a particular trial
@@ -152,12 +166,15 @@ get_task_settings <- function(obj, index = NA){
 #' ONE based task order for less interference with R subsetting.
 #'
 #' @param phase_obj filtered phase vremt object. Use get_phase_
+#' @param zero_based task settings in the unity is reported as
+#' zero based. should the task settings be returned as is in the log or returned
+#' as a 1 based index (default)
 #'
 #' @return ONE BASED integer. This
 #' @export
 #'
 #' @examples
-get_phase_task_index <- function(phase_obj, zero_based = TRUE){
+get_phase_task_index <- function(phase_obj, zero_based = FALSE){
   df_actions <- get_actions_log(phase_obj)
   task_cities <- df_actions$taskcity
   if(any(task_cities != task_cities[1])){
@@ -165,7 +182,8 @@ get_phase_task_index <- function(phase_obj, zero_based = TRUE){
             "that it only contains a single task")
     return(NULL)
   }
-  index <- as.integer(gsub("Task", "", task_cities[1])) + 1
+  index <- as.integer(gsub("Task", "", task_cities[1]))
+  if(!zero_based) index <- index + 1
   return(index)
 }
 
