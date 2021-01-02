@@ -27,7 +27,7 @@ plot_vremt_path <- function(obj, background = FALSE, ...){
 #'
 #' @param locations character vector of locations to be plotted
 #'
-#' @return lsit with ggplot geoms
+#' @return list with ggplot geoms
 #' @export
 #'
 #' @examples

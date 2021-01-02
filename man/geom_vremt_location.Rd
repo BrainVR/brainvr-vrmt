@@ -10,7 +10,7 @@ geom_vremt_location(locations)
 \item{locations}{character vector of locations to be plotted}
 }
 \value{
-lsit with ggplot geoms
+list with ggplot geoms
 }
 \description{
 Plots locations and placement circles
