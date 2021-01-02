@@ -222,13 +222,13 @@ get_phase_task_index <- function(phase_obj, zero_based = FALSE){
 #' @examples
 #' get_location_position("cemetery")
 get_location_position <- function(locations, simplify = TRUE){
-  pos <- LOCATION_ITEM[LOCATION_ITEM$location %in% locations, ]
-  if(nrow(pos) != length(locations)){
+  out <- LOCATION_ITEM[LOCATION_ITEM$location %in% locations,
+                       c("location", "position_x", "position_z", "position_y")]
+  if(nrow(out) != length(locations)){
     warning("Locations of name ", locations[!(locations %in% LOCATION_ITEM$location)],
             " do not exist.")
     return(NULL)
   }
-  out <- pos[, c("location", "position_x", "position_z", "position_y")]
   rownames(out) <- out$location
   out$location <- NULL
   if(nrow(out) == 1 && simplify) out <- unlist(out)
@@ -238,15 +238,31 @@ get_location_position <- function(locations, simplify = TRUE){
 #' @describeIn get_location_position getting item position
 #' @param item name of the item
 get_item_position <- function(items, simplify = TRUE){
-  pos <- LOCATION_ITEM[LOCATION_ITEM$item %in% items, ]
-  if(nrow(pos) != length(items)){
+  out <- LOCATION_ITEM[LOCATION_ITEM$item %in% items,
+                       c("item", "position_x", "position_z", "position_y")]
+  if(nrow(out) != length(items)){
     warning("Items of name ", items[!(items %in% LOCATION_ITEM$item)],
             " do not exist.")
     return(NULL)
   }
-  out <- pos[, c("item", "position_x", "position_z", "position_y")]
   rownames(out) <- out$item
   out$item <- NULL
+  if(nrow(out) == 1 && simplify) out <- unlist(out)
+  return(out)
+}
+
+#' @describeIn get_location_position returns position of a given arm
+#' @param arms number 1-5 defining the arm of the island
+get_arm_position <- function(arms, simplify = TRUE){
+  if(!(all(arms %in% seq_len(5)))){
+    warning("There are only arms 1 to 5")
+    return(NULL)
+  }
+  out <- LOCATION_ITEM[LOCATION_ITEM$arm %in% arms,
+                       c("arm", "position_x", "position_z", "position_y")]
+  out <- unique(out)
+  rownames(out) <- out$arms
+  out$arm <- NULL
   if(nrow(out) == 1 && simplify) out <- unlist(out)
   return(out)
 }

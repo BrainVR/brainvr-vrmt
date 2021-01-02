@@ -48,10 +48,12 @@ test_that("Geting item information", {
 test_that("Getting item and location positions", {
   location <- "cemetery"
   item <- "globe"
+  arm <- 1
   expect_silent(res <- get_location_position(location))
   expect_silent(res2 <- get_item_position(item))
+  expect_silent(res3 <- get_arm_position(arm))
   expect_vector(res, size = 3)
-  expect_equal(res, res2)
+  expect_equal(res, res2, res3)
 
   expect_silent(res <- get_location_position(location, simplify = FALSE))
   expect_s3_class(res, "data.frame")
@@ -70,4 +72,11 @@ test_that("Getting item and location positions", {
 
   expect_silent(res <- get_item_position(c(item, "beer")))
   expect_s3_class(res, "data.frame")
+
+  expect_silent(res <- get_arm_position(arm, simplify = FALSE))
+  expect_s3_class(res, "data.frame")
+
+  expect_warning(res <- get_arm_position(0))
+  expect_null(res)
+  expect_warning(res <- get_arm_position("nothing"))
 })

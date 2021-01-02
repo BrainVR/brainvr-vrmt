@@ -3,11 +3,14 @@
 \name{get_location_position}
 \alias{get_location_position}
 \alias{get_item_position}
+\alias{get_arm_position}
 \title{Returns the position of a particular location (or item)}
 \usage{
 get_location_position(locations, simplify = TRUE)
 
 get_item_position(items, simplify = TRUE)
+
+get_arm_position(arms, simplify = TRUE)
 }
 \arguments{
 \item{locations}{name of the location defining the location}
@@ -15,6 +18,8 @@ get_item_position(items, simplify = TRUE)
 \item{simplify}{only valid in case of a single location return. If true,
 only a vector is returned. Otherwise even single location is returned as a
 data.frame}
+
+\item{arms}{number 1-5 defining the arm of the island}
 
 \item{item}{name of the item}
 }
@@ -30,6 +35,8 @@ a location and a globe as an item have the same position)
 \section{Functions}{
 \itemize{
 \item \code{get_item_position}: getting item position
+
+\item \code{get_arm_position}: returns position of a given arm
 }}
 
 \examples{
