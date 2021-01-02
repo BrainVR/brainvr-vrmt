@@ -99,6 +99,14 @@ item_performance <- function(wanted_items, collected_items) {
 #'
 #' @param location Location is set as a numeric(3)
 #'
+#' @return
+#' @export
+#'
+#' @examples
+get_closest_arm <- function(location){
+  distances <- get_arm_distances(location)
+  min <- which(min(distances) == distances)
+  return(min)
 }
 
 #' Return distances to all arms
@@ -107,4 +115,11 @@ item_performance <- function(wanted_items, collected_items) {
 #'
 #' @return vector 5 with distances to each arm
 #' @export
+#'
+#' @examples
+get_arm_distances <- function(location){
+  arms <- get_arm_position()
+  distances <- stats::dist(rbind(arms, location))
+  distances <- as.numeric(as.matrix(distances)[6, 1:5])
+  return(distances)
 }

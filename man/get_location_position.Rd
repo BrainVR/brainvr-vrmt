@@ -10,7 +10,7 @@ get_location_position(locations, simplify = TRUE)
 
 get_item_position(items, simplify = TRUE)
 
-get_arm_position(arms, simplify = TRUE)
+get_arm_position(arms = seq_len(5), simplify = TRUE)
 }
 \arguments{
 \item{locations}{name of the location defining the location}
@@ -19,7 +19,7 @@ get_arm_position(arms, simplify = TRUE)
 only a vector is returned. Otherwise even single location is returned as a
 data.frame}
 
-\item{arms}{number 1-5 defining the arm of the island}
+\item{arms}{number 1-5 defining the arm of the island. Defaults to all arms}
 
 \item{item}{name of the item}
 }

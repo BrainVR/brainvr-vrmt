@@ -252,8 +252,8 @@ get_item_position <- function(items, simplify = TRUE){
 }
 
 #' @describeIn get_location_position returns position of a given arm
-#' @param arms number 1-5 defining the arm of the island
-get_arm_position <- function(arms, simplify = TRUE){
+#' @param arms number 1-5 defining the arm of the island. Defaults to all arms
+get_arm_position <- function(arms = seq_len(5), simplify = TRUE){
   if(!(all(arms %in% seq_len(5)))){
     warning("There are only arms 1 to 5")
     return(NULL)
@@ -265,4 +265,35 @@ get_arm_position <- function(arms, simplify = TRUE){
   out$arm <- NULL
   if(nrow(out) == 1 && simplify) out <- unlist(out)
   return(out)
+}
+
+#' Returns which was the last arm entered based on bridge crossing
+#'
+#' @description this is prone to error due to the fact how the triggers are
+#' recorded. Participant can technically enter a bridge and then exit it withou
+#' ever stepping into the specific arm - we could solve for this by tracking
+#' the same enter exit trigger twice, but this does not solve the issue at hand
+#' as it would be
+#' @param obj vremt object. Usually specific recallPlacement or pickup phase
+#' @param time time of interest
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_last_bridge_entered <- function(obj, time){
+  exp_log <- get_experiment_log(obj)
+  exp_log <- exp_log[exp_log$Sender == "trigger" &
+                       grepl("bridge", exp_log$Message), ]
+  exp_log <- exp_log[exp_log$Time < time, ]
+  if(nrow(exp_log) == 0){
+    warning()
+    return(NULL)
+  }
+  #' I am getting both enter and exit so that there is less
+  #' errors due to phase switching (e.g. participant dropping an ittem
+  #' before any movement would potentially trigger last trigger)
+  line <- tail(exp_log, 1)
+  location <- gsub("bridge-", "", line$Message)
+  return(location)
 }
