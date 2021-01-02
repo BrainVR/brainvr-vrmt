@@ -57,7 +57,7 @@ geom_vremt_location <- function(locations){
 #'
 #' @examples
 geom_vremt_placements <- function(recallPlacement, mark_correct = TRUE,
-                                  correct_distance = 12, ...){
+                                  correct_distance = 20, ...){
   performance <- vremt_placement_performance(recallPlacement)
   if(mark_correct){
   performance$correct <- sapply(performance$target_distance, function(x){

@@ -7,7 +7,7 @@
 geom_vremt_placements(
   recallPlacement,
   mark_correct = TRUE,
-  correct_distance = 12,
+  correct_distance = 20,
   ...
 )
 }
