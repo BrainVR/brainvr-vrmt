@@ -7,7 +7,7 @@
 get_closest_arm(location)
 }
 \arguments{
-\item{location}{Location is set as vector 3}
+\item{location}{Location is set as a numeric(3)}
 }
 \value{
 

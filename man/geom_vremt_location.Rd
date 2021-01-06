@@ -4,13 +4,20 @@
 \alias{geom_vremt_location}
 \title{Plots locations and placement circles}
 \usage{
-geom_vremt_location(locations)
+geom_vremt_location(locations, point_args = list(), text_args = list())
 }
 \arguments{
 \item{locations}{character vector of locations to be plotted}
+
+\item{point_args}{list with ggplot geom_point arguments. can be used to override
+the default arguments of location drawing. By default it is list(
+shape = 21, size = 25, stroke = 2, color = "grey60", alpha = 0.8)}
+
+\item{text_args}{list of ggplot geom_text arguemnts. overrides default
+argumetns in text. Default is list(hjust = 0, nudge_x = 15, size = 7)}
 }
 \value{
-list with ggplot geoms
+list with ggplot geom_point and geom_text
 }
 \description{
 Plots locations and placement circles

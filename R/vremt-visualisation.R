@@ -26,20 +26,36 @@ plot_vremt_path <- function(obj, background = FALSE, ...){
 #' Plots locations and placement circles
 #'
 #' @param locations character vector of locations to be plotted
+#' @param point_args list with ggplot geom_point arguments. can be used to override
+#' the default arguments of location drawing. By default it is list(
+#' shape = 21, size = 25, stroke = 2, color = "grey60", alpha = 0.8)
+#' @param text_args list of ggplot geom_text arguemnts. overrides default
+#' argumetns in text. Default is list(hjust = 0, nudge_x = 15, size = 7)
 #'
-#' @return list with ggplot geoms
+#' @return list with ggplot geom_point and geom_text
 #' @export
 #'
 #' @examples
-geom_vremt_location <- function(locations){
+geom_vremt_location <- function(locations,
+                                point_args = list(),
+                                text_args = list()){
+  DEFAULT_POINT_ARGS <- list(shape = 21, size = 25, stroke = 2,
+                               color = "grey60", alpha = 0.8)
+  point_args <- modifyList(DEFAULT_POINT_ARGS, point_args)
   df_pos <- get_location_position(locations, simplify = FALSE)
-  res <- list(geom_point(data = df_pos, aes(x = position_x, y = position_y),
-                         shape = 21, size = 25, stroke = 2, color = "grey60",
-                         alpha = 0.8),
-              geom_text(data = df_pos, aes(x = position_x, y = position_y,
-                                           label = row.names(df_pos)),
-                        hjust = 0, nudge_x = 15, size = 7,
-                        check_overlap = TRUE))
+  point_args$data <- df_pos
+  point_args$mapping <- aes(x = position_x, y = position_y)
+  point_geom <- do.call("geom_point", point_args)
+
+  DEFAULT_TEXT_ARGS <- list(hjust = 0, nudge_x = 15, size = 7)
+  text_args <- modifyList(DEFAULT_TEXT_ARGS, text_args)
+  text_args$data <- df_pos
+  text_args$mapping <- aes(x = position_x, y = position_y,
+                       label = row.names(df_pos))
+  text_args$check_overlap = TRUE
+  txt_geom <- do.call("geom_text", text_args)
+
+  res <- list(point_geom, txt_geom)
   return(res)
 }
 
