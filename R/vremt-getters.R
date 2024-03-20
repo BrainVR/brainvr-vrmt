@@ -128,9 +128,8 @@ get_actions_log <- function(obj){
 #' @examples
 get_collected_items <- function(phase_obj){
   df_actions <- get_actions_log(phase_obj)
-
-  collected_items <- df_actions$item_name[df_actions$action == "picked"]
-  dropped_items <- df_actions$item_name[df_actions$action == "dropped"]
+  collected_items <- df_actions$item_name[df_actions$Action == "picked"]
+  dropped_items <- df_actions$item_name[df_actions$Action == "dropped"]
   # removes dropped items from collected items
   if (length(dropped_items) > 0) {
     collected_items <- setdiff_unique(collected_items, dropped_items)

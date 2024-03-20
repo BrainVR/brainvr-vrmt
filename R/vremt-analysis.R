@@ -2,13 +2,14 @@
 #'
 #' @param recallItems vremt recallItem object receoved with
 #' \code{\link{get_recallItems_data}}
-#' @param index order of the phase to analyse
 #'
 #' @return list with resutls
 #' @export
 #'
 #' @examples
-vremt_collection_performance <- function(recallItems, index){
+vremt_collection_performance <- function(recallItems){
+  # TODO
+  # Check if not empty
   phase_task_index <- get_phase_task_index(recallItems)
   task <- get_task_settings(recallItems, phase_task_index)
   res <- list()
@@ -23,7 +24,7 @@ vremt_collection_performance <- function(recallItems, index){
   return(res)
 }
 
-#' Analyses the recall placemnent phase
+#' Analyses the recall placement phase
 #'
 #' @param recallPlacement vremt placement object got with
 #' \code{\link{get_recallPlacement_data}}
@@ -33,7 +34,7 @@ vremt_collection_performance <- function(recallItems, index){
 #' @export
 #'
 #' @examples
-vremt_placement_performance <- function(recallPlacement, index){
+vremt_placement_performance <- function(recallPlacement){
   phase_task_index <- get_phase_task_index(recallPlacement)
   task <- get_task_settings(recallPlacement, phase_task_index)
   df_actions <- get_actions_log(recallPlacement)

@@ -10,10 +10,16 @@
 #'
 #' @examples
 load_vremt_experiments <- function(folder, preprocess = TRUE, flatten = FALSE){
+  message("Loading brainvr experiments")
   exps <- load_experiments(folder)
+  message("Brainvr experiments loaded succesfully. Processing VREMT logs")
   for(i_exp in 1:length(exps)){
     exp <- exps[[i_exp]]
+    message("----------------------")
+    message("Processing log ", exp$timestamp)
+    message("loading actions log")
     exp$data$actions_log <- open_actions_log(folder, exp)
+    message("Processing experiment")
     if(preprocess) exp <- preprocess_vremt(exp)
     class(exp) <- append(class(exp), "vremt")
     exps[[i_exp]] <- exp

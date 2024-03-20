@@ -27,18 +27,15 @@ vremt_preprocess_experiment_info <- function(obj){
 vremt_preprocess_experiment_log <- function(obj){
   df_exp <- get_experiment_log(obj)
   df_exp$timestamp <- df_exp$Time
-  # Deletes first pickup whihc is there as an error due to logging
-  df_exp <- df_exp[-which(df_exp$Message == "pickup")[1], ]
-  df_exp <- add_indices_experiment_log(df_exp)
+  # no longer needed as the loggin has been fixes
+  # df_exp <- add_indices_experiment_log(df_exp)
   obj$data$experiment_log$data <- df_exp
   return(obj)
 }
 
 vremt_preprocess_actions_log <- function(obj){
   df_actions <- obj$data$actions_log$data
-  colnames(df_actions) <- tolower(colnames(df_actions))
-  df_actions[, ncol(df_actions)] <- NULL
-  df_actions$item_name <- convert_czech_to_en(df_actions$item_name)
+  df_actions$ItemName <- convert_czech_to_en(df_actions$ItemName)
   obj$data$actions_log$data <- df_actions
   return(obj)
 }
@@ -84,10 +81,13 @@ decompose_task <- function(task){
 #' @export
 #'
 #' @examples
-convert_location_to_item <- function(locations){
-  items <- sapply(locations, function(x) {
-    LOCATION_ITEM$item[LOCATION_ITEM$location == x]
-  }, simplify = TRUE, USE.NAMES = FALSE)
+convert_location_to_item <- function(locations) {
+  replace_func <- function(x) {
+    item_line <- LOCATION_ITEM[LOCATION_ITEM$location == x, ]
+    if(nrow(item_line) == 0) return(paste0("MissingLocation(", x, ")"))
+    return(item_line$item)
+  }
+  items <- sapply(locations, replace_func, simplify = TRUE, USE.NAMES = FALSE)
   return(items)
 }
 
@@ -100,8 +100,11 @@ convert_location_to_item <- function(locations){
 #'
 #' @examples
 convert_czech_to_en <- function(items) {
-  en <- sapply(items, function(x) {
-    ITEM_CODES$name_en[ITEM_CODES$name_cz == x]
-  }, simplify = TRUE, USE.NAMES = FALSE)
+  replace_func <- function(x) {
+    item_line <- ITEM_CODES[ITEM_CODES$name_cz == x, ]
+    if(nrow(item_line) == 0) return(paste0("MissingEN(", x, ")"))
+    return(item_line$name_en)
+  }
+  en <- sapply(items, replace_func, simplify = TRUE, USE.NAMES = FALSE)
   return(en)
 }
