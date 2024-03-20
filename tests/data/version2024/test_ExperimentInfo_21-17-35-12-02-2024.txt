@@ -1,0 +1,52 @@
+***SESSION HEADER***
+{
+  "Participant": "test",
+  "Timestamp": "21-17-35-12-02-2024"
+}
+---SESSION HEADER---
+***EXPERIMENT INFO***
+{
+  "BuildInfo": {
+    "buildDate": "2024/02/10",
+    "project": "EMT_Islands_Sound",
+    "branch": "sound",
+    "version": "2.2.1"
+  },
+  "Participant": {
+    "Id": "test",
+    "Age": 1,
+    "Sex": "woman"
+  },
+  "Settings": {
+    "settings": [
+      "name: Default setting",
+      "generateLogs: True",
+      "restartPlayer: True",
+      "playerHeight: 2,5",
+      "playerSpeed: 5",
+      "playerJump: False",
+      "exp_pauseTime: 60",
+      "pick_stareTime: 10",
+      "pick_pauseTime: 5",
+      "rec_waitBefore: 5",
+      "rec_waitBetween: 5",
+      "rec_selectionLimit: 0",
+      "rec_timeLimit: 0",
+      "tolerance: 6",
+      "show_inventory: False",
+      "enviro_sounds: False",
+      "sounds_experiment: True",
+      "tasks: C:/Development/Unity/NUDZ/Builds/OstrovySound221/EMT Islands_Data/../ExperimentTasks/test.json"
+    ]
+  },
+  "Task": "Trial0: [rock,post,well,airport,museum,factory,12,sunny,Slon,Kladivo,Havran,Notebook,Vláček] Trial1: [bench,hospital,camp,busstation,mill,waste,22,rain,Lev,Kačer,Reproduktor,Balónky,Kávovar] Trial2: [fountain,office,playground,gasstation,houses,cemetery,4,sunny,Kráva,Hodiny,Holub,Konvice,Xylofon] ",
+  "CameraInfo": {
+    "FieldOfView": 60.0,
+    "FacClipPlane": 1000.0
+  },
+  "ScreenInfo": {
+    "Height": 1080.0,
+    "Width": 1920.0
+  }
+}
+---EXPERIMENT INFO---

@@ -1,0 +1,13 @@
+***SESSION HEADER***
+{
+  "Participant": "test",
+  "Timestamp": "21-17-35-12-02-2024"
+}
+---SESSION HEADER---
+***TEST HEADER***
+
+---TEST HEADER---
+Timestamp;TrialName;Phase;TotalTime;Times;TotalTrajectory;Trajectories;CollectionItemsPicked;ItemList;CollectionItemsCorrect;OrderErrors;PlacementErrors;LocationErrors;
+77011.7705;Trial0;pickup;241.90;(47.65,54.98,43.62,43.90,51.75);897.65;(156.22,218.90,162.20,158.49,201.84);0;(Slon, Kladivo, Havran, Notebook, Vláček);5;0;0;0;
+77357.7360;Trial0;recall;211.65;(3.05,17.88,25.43,22.73,38.10,18.32,18.10,29.55,19.73,18.75);1010.09;(147.00,81.09,74.30,104.00,127.50,83.17,78.11,136.75,94.39,83.78);5;(Vláček, Havran, Notebook, Slon, Kladivo);5;2;1;2;
+77400.4532;Trial2;recall;0.00;();0.00;();5;(Pila, Kačer, Balónky, Talíře, Havran);0;0;0;0;
