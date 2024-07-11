@@ -42,6 +42,7 @@ vremt_preprocess_experiment_log <- function(obj, version) {
 
 vremt_preprocess_actions_log <- function(obj, version) {
   df_actions <- obj$data$actions_log$data
+  colnames(df_actions) <- gsub("_", "", colnames(df_actions))
   df_actions$ItemName <- convert_czech_to_en(df_actions$ItemName, version)
   df_actions$Phase <- gsub("recallSpaceSound", "recallPlacement",
                            df_actions$Phase)
