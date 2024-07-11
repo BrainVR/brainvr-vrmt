@@ -1,7 +1,7 @@
 Package: brainvr.vremt
 Type: Package
 Title: Loads, preprocesses and analyses VREMT VR task data
-Version: 0.1.0
+Version: 0.2.0
 Author: Lukáš 'hejtmy' Hejtmánek
 Maintainer: Lukáš 'hejtmy' Hejtmánek <hejtmy@gmail.com>
 Description: More about what it does (maybe more than one line)
@@ -14,6 +14,11 @@ Remotes:
 Depends:
     brainvr.reader (>= 0.2.0),
     R (>= 2.10)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat
+Imports:
+    googlesheets4
+VignetteBuilder: knitr
