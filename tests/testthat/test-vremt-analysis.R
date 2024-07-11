@@ -1,4 +1,4 @@
-exps <- load_vremt_experiments("../../inst/extdata/raw/")
+exps <- load_vremt_experiments("../data/version2024")
 exp <- exps[[3]]
 
 test_that("Item collection analysis works", {

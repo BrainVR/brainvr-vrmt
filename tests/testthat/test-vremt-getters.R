@@ -1,5 +1,6 @@
-exps <- load_vremt_experiments("../../inst/extdata/raw/")
-exp <- exps[[3]]
+library(brainvr.vremt)
+exps <- load_vremt_experiments("../data/version2024")
+exp <- exps[[1]]
 
 test_that("Simple getters", {
   out <- get_actions_log(exp)
