@@ -1,0 +1,52 @@
+***SESSION HEADER***
+{
+  "Participant": "154423",
+  "Timestamp": "19-43-45-14-03-2024"
+}
+---SESSION HEADER---
+***EXPERIMENT INFO***
+{
+  "BuildInfo": {
+    "buildDate": "2024/02/10",
+    "project": "EMT_Islands_Sound",
+    "branch": "sound",
+    "version": "2.2.1"
+  },
+  "Participant": {
+    "Id": "154423",
+    "Age": 20,
+    "Sex": "woman"
+  },
+  "Settings": {
+    "settings": [
+      "name: Default setting",
+      "generateLogs: True",
+      "restartPlayer: True",
+      "playerHeight: 2,5",
+      "playerSpeed: 5",
+      "playerJump: False",
+      "exp_pauseTime: 30",
+      "pick_stareTime: 10",
+      "pick_pauseTime: 5",
+      "rec_waitBefore: 5",
+      "rec_waitBetween: 5",
+      "rec_selectionLimit: 0",
+      "rec_timeLimit: 0",
+      "tolerance: 6",
+      "show_inventory: False",
+      "enviro_sounds: False",
+      "sounds_experiment: True",
+      "tasks: D:/OSTROVY zvuk/OSTROVY/OstrovySound221/EMT Islands_Data/../ExperimentTasks/protokol_5.1.json"
+    ]
+  },
+  "Task": "Trial0: [statue,church,railway,lighthouse,storage,hotel,6,sunny,Prase,Konvice,Slepice,Xylofon,Koza] Trial1: [fountain,radar,playground,theater,office,dock,15,sunny,Sova,Konev,Kráva,Mikrovlnka,Sanitka] Trial2: [tree,airport,cemetery,hospital,well,coffee,9,rain,Lev,Kartáček,Kladivo,Notebook,Kačer] Trial3: [rock,museum,factory,busstation,post,camp,9,snow,Vláček,Talíře,Reproduktor,Holub,Vlk] ",
+  "CameraInfo": {
+    "FieldOfView": 60.0,
+    "FacClipPlane": 1000.0
+  },
+  "ScreenInfo": {
+    "Height": 1080.0,
+    "Width": 1920.0
+  }
+}
+---EXPERIMENT INFO---

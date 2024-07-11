@@ -1,0 +1,90 @@
+***SESSION HEADER***
+{
+  "Participant": "154423",
+  "Timestamp": "19-43-45-14-03-2024"
+}
+---SESSION HEADER---
+***TEST HEADER***
+
+---TEST HEADER---
+Timestamp;Action;ItemName;Position;Location;DistanceToOrigin;OrderInTrial;TrialName;TrajectoryLength;ElapsedTime;Phase;
+71248.2766;picked;Prase;(97.25, 10.59, 202.11);church;0.00;0;Trial0;0.00;0.00;pickup;
+71327.2197;picked;Konvice;(88.79, 10.60, 65.66);railway;0.00;1;Trial0;159.16;86.31;pickup;
+71404.0699;picked;Slepice;(201.59, 13.88, 182.76);lighthouse;0.00;2;Trial0;194.87;92.95;pickup;
+71458.7389;picked;Xylofon;(43.13, 10.71, 108.36);storage;0.00;3;Trial0;227.77;63.60;pickup;
+71511.4594;picked;Koza;(176.22, 10.68, 71.62);hotel;0.00;4;Trial0;207.57;59.85;pickup;
+71576.3033;picked;Sova;(43.13, 10.71, 108.36);radar;0.00;0;Trial1;0.00;0.00;pickup;
+71629.6736;picked;Konev;(201.59, 13.88, 182.76);playground;0.00;1;Trial1;186.94;55.49;pickup;
+71674.0683;picked;Kráva;(176.22, 10.68, 71.62);theater;0.00;2;Trial1;203.06;51.02;pickup;
+71718.4630;picked;Mikrovlnka;(97.25, 10.59, 202.11);office;0.00;3;Trial1;160.46;42.80;pickup;
+71762.0252;picked;Sanitka;(88.79, 10.60, 65.66);dock;0.00;4;Trial1;162.13;43.26;pickup;
+71876.5910;picked;Lev;(88.79, 10.60, 65.66);airport;0.00;0;Trial2;0.00;0.00;pickup;
+71928.2964;picked;Kartáček;(43.13, 10.71, 108.36);cemetery;0.00;1;Trial2;157.37;109.55;pickup;
+71981.0337;picked;Kladivo;(97.25, 10.59, 202.11);hospital;0.00;2;Trial2;198.54;57.44;pickup;
+72037.9513;picked;Notebook;(201.59, 13.88, 182.76);well;0.00;3;Trial2;152.04;41.88;pickup;
+72086.2761;picked;Kačer;(176.22, 10.68, 71.62);coffee;0.00;4;Trial2;211.43;62.18;pickup;
+72147.6388;picked;Vláček;(176.22, 10.68, 71.62);museum;0.00;0;Trial3;0.00;0.00;pickup;
+72258.1267;picked;Talíře;(43.13, 10.71, 108.36);factory;0.00;1;Trial3;202.68;118.36;pickup;
+72306.3009;picked;Reproduktor;(88.79, 10.60, 65.66);busstation;0.00;2;Trial3;193.10;51.21;pickup;
+72350.2466;picked;Holub;(97.25, 10.59, 202.11);post;0.00;3;Trial3;160.82;43.58;pickup;
+72483.6803;picked;Vlk;(201.59, 13.88, 182.76);camp;0.00;4;Trial3;157.45;127.22;pickup;
+73130.6019;picked;Lev;(114.95, 11.29, 137.56);tree;76.50;0;Trial2;0.00;0.00;recallItems;
+73159.1260;picked;Kartáček;(122.26, 11.29, 144.52);tree;87.00;1;Trial2;0.00;0.00;recallItems;
+73181.5394;picked;Kladivo;(117.72, 11.29, 141.84);tree;63.70;2;Trial2;0.00;0.00;recallItems;
+73198.9738;picked;Koza;(138.65, 11.29, 136.25);tree;74.80;4;Trial2;0.00;0.00;recallItems;
+73204.9194;picked;Kačer;(127.62, 11.29, 144.83);tree;87.90;4;Trial2;0.00;0.00;recallItems;
+73218.5076;picked;Lev;(126.10, 11.20, 132.82);tree;76.80;0;Trial2;15.10;8.78;recallSpaceSound;
+73234.8092;dropped;Lev;(98.63, 11.33, 68.05);airport;10.10;0;Trial2;74.94;16.32;recallSpaceSound;
+73252.8105;picked;Kartáček;(126.48, 10.95, 131.09);tree;86.40;1;Trial2;78.96;17.98;recallSpaceSound;
+73278.6547;dropped;Kartáček;(40.15, 11.33, 97.17);cemetery;11.60;1;Trial2;109.84;25.86;recallSpaceSound;
+73327.2406;picked;Kladivo;(128.26, 11.49, 132.04);tree;76.60;2;Trial2;151.81;48.54;recallSpaceSound;
+73343.7982;dropped;Kladivo;(97.61, 11.33, 201.74);hospital;0.90;2;Trial2;76.49;16.60;recallSpaceSound;
+73361.0836;picked;Notebook;(126.25, 11.09, 130.28);tree;91.90;3;Trial2;79.64;17.27;recallSpaceSound;
+73385.8116;dropped;Notebook;(201.72, 14.33, 180.40);well;2.40;3;Trial2;111.32;24.75;recallSpaceSound;
+73407.0427;picked;Kačer;(128.99, 10.98, 132.04);tree;76.70;4;Trial2;98.27;21.22;recallSpaceSound;
+73424.1947;dropped;Kačer;(175.15, 11.28, 72.92);coffee;1.80;4;Trial2;76.32;17.17;recallSpaceSound;
+73501.3944;picked;Koza;(139.14, 11.29, 133.67);fountain;72.30;2;Trial1;0.00;0.00;recallItems;
+73507.1061;picked;Konev;(118.10, 11.29, 123.01);fountain;102.70;1;Trial1;0.00;0.00;recallItems;
+73511.0683;picked;Mikrovlnka;(115.00, 11.29, 127.24);fountain;77.00;3;Trial1;0.00;0.00;recallItems;
+73518.8623;picked;Holub;(115.97, 11.29, 139.74);fountain;65.10;3;Trial1;0.00;0.00;recallItems;
+73524.2238;picked;Slepice;(124.87, 11.29, 144.96);fountain;85.60;1;Trial1;0.00;0.00;recallItems;
+73594.5132;picked;Sova;(125.58, 11.18, 132.98);fountain;86.00;0;Trial1;119.94;90.72;recallSpaceSound;
+73616.1274;dropped;Sova;(41.19, 11.33, 104.60);radar;4.30;0;Trial1;102.11;21.63;recallSpaceSound;
+73638.0084;picked;Konev;(128.70, 11.11, 130.18);fountain;89.90;1;Trial1;105.29;21.86;recallSpaceSound;
+73653.6120;dropped;Konev;(98.25, 11.31, 68.26);dock;154.30;1;Trial1;72.10;15.62;recallSpaceSound;
+73671.6466;picked;Mikrovlnka;(127.60, 11.03, 133.45);fountain;75.10;3;Trial1;75.02;18.02;recallSpaceSound;
+73687.4482;dropped;Mikrovlnka;(96.83, 11.33, 202.43);office;0.90;3;Trial1;77.39;15.82;recallSpaceSound;
+73703.6857;picked;Sanitka;(126.22, 11.20, 130.38);fountain;74.80;4;Trial1;78.92;16.22;recallSpaceSound;
+73726.6312;dropped;Sanitka;(201.08, 14.33, 180.40);playground;160.60;4;Trial1;108.67;22.96;recallSpaceSound;
+73745.2156;picked;Kráva;(128.80, 11.37, 134.26);fountain;78.60;2;Trial1;90.41;18.57;recallSpaceSound;
+73761.7834;dropped;Kráva;(173.82, 11.33, 74.66);theater;3.90;2;Trial1;74.88;16.59;recallSpaceSound;
+73794.4398;picked;Prase;(135.62, 11.29, 141.52);statue;71.70;0;Trial0;0.00;0.00;recallItems;
+73814.8872;picked;Konvice;(127.62, 11.29, 144.83);statue;88.20;1;Trial0;0.00;0.00;recallItems;
+73822.2983;picked;Slepice;(138.65, 11.29, 136.25);statue;78.30;2;Trial0;0.00;0.00;recallItems;
+73832.8718;picked;Xylofon;(133.05, 11.29, 143.11);statue;96.40;3;Trial0;0.00;0.00;recallItems;
+73887.5920;picked;Koza;(139.14, 11.29, 133.67);statue;72.30;4;Trial0;0.00;0.00;recallItems;
+73896.7175;picked;Prase;(129.76, 11.40, 132.10);statue;77.20;0;Trial0;8.60;8.84;recallSpaceSound;
+73916.5828;dropped;Prase;(98.16, 11.33, 201.07);church;1.60;0;Trial0;95.87;19.88;recallSpaceSound;
+73933.2521;picked;Konvice;(127.94, 11.32, 133.99);statue;78.80;1;Trial0;75.30;16.65;recallSpaceSound;
+73949.9032;dropped;Konvice;(95.77, 11.33, 66.29);railway;7.00;1;Trial0;79.62;16.67;recallSpaceSound;
+73985.6897;picked;Xylofon;(127.70, 11.23, 134.09);statue;88.40;3;Trial0;92.40;35.77;recallSpaceSound;
+74006.3047;dropped;Xylofon;(42.72, 11.33, 105.38);storage;3.10;3;Trial0;101.44;20.63;recallSpaceSound;
+74029.7507;picked;Slepice;(126.51, 11.44, 131.01);statue;91.20;2;Trial0;100.55;23.43;recallSpaceSound;
+74052.7977;dropped;Slepice;(201.52, 14.33, 180.44);lighthouse;2.40;2;Trial0;109.50;23.06;recallSpaceSound;
+74072.9966;picked;Koza;(126.50, 11.02, 130.86);statue;77.30;4;Trial0;94.93;20.18;recallSpaceSound;
+74089.7157;dropped;Koza;(176.03, 11.28, 72.90);hotel;1.40;4;Trial0;79.05;16.74;recallSpaceSound;
+74128.0324;picked;Vláček;(130.33, 11.29, 144.09);rock;85.80;0;Trial3;0.00;0.00;recallItems;
+74133.0617;picked;Holub;(116.15, 11.29, 125.33);rock;79.10;3;Trial3;0.00;0.00;recallItems;
+74151.0792;picked;Reproduktor;(113.62, 11.29, 132.35);rock;71.20;2;Trial3;0.00;0.00;recallItems;
+74159.0381;picked;Vlk;(126.32, 11.29, 119.84);rock;98.10;4;Trial3;0.00;0.00;recallItems;
+74185.9820;picked;Talíře;(114.10, 11.29, 135.09);rock;75.80;1;Trial3;0.00;0.00;recallItems;
+74235.5552;picked;Reproduktor;(125.17, 11.02, 132.65);rock;76.20;2;Trial3;41.33;48.62;recallSpaceSound;
+74250.2259;dropped;Reproduktor;(101.67, 11.32, 69.91);busstation;13.60;2;Trial3;70.69;14.69;recallSpaceSound;
+74264.0977;picked;Holub;(128.17, 11.13, 129.70);rock;78.70;3;Trial3;67.28;13.85;recallSpaceSound;
+74281.3152;dropped;Holub;(98.15, 11.33, 199.97);post;2.40;3;Trial3;79.07;17.24;recallSpaceSound;
+74297.0685;picked;Talíře;(128.09, 11.19, 130.82);rock;87.90;1;Trial3;75.31;15.74;recallSpaceSound;
+74318.3335;dropped;Talíře;(42.41, 11.33, 104.69);factory;3.80;1;Trial3;102.69;21.28;recallSpaceSound;
+74339.3321;picked;Vláček;(128.54, 11.45, 132.07);rock;77.00;0;Trial3;101.77;20.98;recallSpaceSound;
+74355.7000;dropped;Vláček;(174.07, 11.33, 73.85);museum;3.20;0;Trial3;78.06;16.39;recallSpaceSound;
+74372.6195;picked;Vlk;(127.74, 11.19, 133.65);rock;88.70;4;Trial3;77.77;16.90;recallSpaceSound;
+74395.3824;dropped;Vlk;(200.75, 14.33, 182.23);camp;1.10;4;Trial3;108.85;22.78;recallSpaceSound;
