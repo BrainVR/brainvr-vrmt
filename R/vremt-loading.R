@@ -9,35 +9,38 @@
 #' @export
 #'
 #' @examples
-load_vremt_experiments <- function(folder, preprocess = TRUE, flatten = FALSE){
+load_vremt_experiments <- function(folder, version = 2024,
+                                   preprocess = TRUE, flatten = FALSE) {
   message("Loading brainvr experiments")
   exps <- load_experiments(folder)
   message("Brainvr experiments loaded succesfully. Processing VREMT logs")
-  for(i_exp in 1:length(exps)){
+  for (i_exp in seq_along(exps)) {
     exp <- exps[[i_exp]]
     message("----------------------")
     message("Processing log ", exp$timestamp)
     message("loading actions log")
     exp$data$actions_log <- open_actions_log(folder, exp)
     message("Processing experiment")
-    if(preprocess) exp <- preprocess_vremt(exp)
+    if (preprocess) exp <- preprocess_vremt(exp, version)
     class(exp) <- append(class(exp), "vremt")
     exps[[i_exp]] <- exp
   }
-  if(length(exps) == 1 & flatten) exps <- exps[[1]]
+  if (length(exps) == 1 && flatten) exps <- exps[[1]]
   return(exps)
 }
 
-open_actions_log <- function(folder, obj){
+
+open_actions_log <- function(folder, obj) {
   pth <- find_actions_log_file(folder, obj)
-  if(is.null(pth)) return(NULL)
+  if (is.null(pth)) return(NULL)
   return(load_brainvr_log(pth))
 }
+
 
 find_actions_log_file <- function(folder, obj){
   ptr <- paste0("actions_", obj$timestamp)
   files <- list.files(folder, pattern = ptr, full.names = TRUE)
-  if(length(files) != 1){
+  if (length(files) != 1) {
     warning("Actions log not found in the folder")
     return(NULL)
   }

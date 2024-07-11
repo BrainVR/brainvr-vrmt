@@ -13,7 +13,7 @@
 #' @examples
 get_phase_data <- function(obj, phase, index = NA){
   phase_time <- get_phase_time(obj, phase, index)
-  if(is.null(phase_time)) return(NULL)
+  if (is.null(phase_time)) return(NULL)
   phase_obj <- filter_times(obj, phase_time)
   return(phase_obj)
 }
@@ -80,12 +80,12 @@ get_phase_time <- function(obj, phase, index = NA){
   } else {
     df_phases <- df_phases[df_phases$Index == index, ]
   }
-  if(nrow(df_phases) == 0){
+  if (nrow(df_phases) == 0){
     warning("There are no phases ", phase, " at index ", index)
     return(NULL)
   }
   # TODO - this is kinda weird and COULD be broken in some cases
-  if(nrow(df_phases) > 3){
+  if (nrow(df_phases) > 3){
     warning("Multiple phases ", phase, " have the index ", index)
     return(NULLL)
   }
@@ -148,7 +148,7 @@ get_collected_items <- function(phase_obj){
 #' @examples
 get_phase_task_settings <- function(phase_obj){
   index <- get_phase_task_index(phase_obj)
-  if(!is.null(index)) settings <- get_task_settings(phase_obj, index)
+  if (!is.null(index)) settings <- get_task_settings(phase_obj, index)
   return(settings)
 }
 
@@ -193,7 +193,7 @@ get_task_settings <- function(obj, index = NA){
 get_phase_task_index <- function(phase_obj, zero_based = FALSE){
   df_actions <- get_actions_log(phase_obj)
   task_cities <- df_actions$taskcity
-  if(any(task_cities != task_cities[1])){
+  if (any(task_cities != task_cities[1])){
     warning("there are multiple tasks in the given object. Filter it first so",
             "that it only contains a single task")
     return(NULL)
@@ -213,6 +213,8 @@ get_phase_task_index <- function(phase_obj, zero_based = FALSE){
 #' @param simplify only valid in case of a single location return. If true,
 #' only a vector is returned. Otherwise even single location is returned as a
 #' data.frame
+#' @param version version of the locations to use ("2020" or "2024").
+#' If NA, all locations are used. Default NA
 #'
 #' @return named numeric vector or NULL if no location of such name is found or
 #' a data.frame if
@@ -220,17 +222,28 @@ get_phase_task_index <- function(phase_obj, zero_based = FALSE){
 #'
 #' @examples
 #' get_location_position("cemetery")
-get_location_position <- function(locations, simplify = TRUE){
-  out <- LOCATION_ITEM[LOCATION_ITEM$location %in% locations,
-                       c("location", "position_x", "position_z", "position_y")]
-  if(nrow(out) != length(locations)){
-    warning("Locations of name ", locations[!(locations %in% LOCATION_ITEM$location)],
-            " do not exist.")
+get_location_position <- function(locations, version = NA, simplify = TRUE) {
+  if (!is.na(version)) {
+    df_locations <- LOCATION_ITEM[LOCATION_ITEM$version == version, ]
+  } else {
+    df_locations <- LOCATION_ITEM
+  }
+  out <- df_locations[df_locations$location %in% locations,
+                      c("location", "position_x", "position_z", "position_y")]
+  if (nrow(out) > length(locations)) {
+    warning("Some locations have multiple entries in the data.
+             Did you specify the version you want?")
+    return(NULL)
+  }
+  if (nrow(out) < length(locations)) {
+    warning("Locations of name ",
+            locations[!(locations %in% df_locations$location)],
+            " do not exist in the dataset.")
     return(NULL)
   }
   rownames(out) <- out$location
   out$location <- NULL
-  if(nrow(out) == 1 && simplify) out <- unlist(out)
+  if (nrow(out) == 1 && simplify) out <- unlist(out)
   return(out)
 }
 

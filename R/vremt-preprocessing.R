@@ -1,30 +1,35 @@
 #' Preprocesses vremt object
 #'
 #' @param obj object of class vremt. loaded with load_vremt_experiments
+#' @param version version of the ITEM_CODES or loctions to use. If NA, all items are used
 #'
 #' @return
 #' @export
 #'
 #' @examples
-preprocess_vremt <- function(obj){
-  obj <- vremt_preprocess_experiment_log(obj)
-  obj <- vremt_preprocess_actions_log(obj)
-  obj <- vremt_preprocess_experiment_info(obj)
+preprocess_vremt <- function(obj, version = NA) {
+  # check if the obj has version set
+  if (!is.null(obj$version) && !is.na(version)) {
+    message("Version of the object is already set. Overwriting with ", version)
+    obj$version <- obj$version
+  }
+  obj <- vremt_preprocess_experiment_log(obj, version)
+  obj <- vremt_preprocess_actions_log(obj, version)
+  obj <- vremt_preprocess_experiment_info(obj, version)
   obj$data$position <- add_area_boundaries(obj$data$position, AREA_BOUNDARIES)
   return(obj)
 }
 
-vremt_preprocess_experiment_info <- function(obj){
-  # decompose_task
+vremt_preprocess_experiment_info <- function(obj, version) {
   task <- obj$data$experiment_info$Experiment$Task
-  obj$data$experiment_info$Experiment$Task <- decompose_task(task)
-  # unnest settings
+  obj$data$experiment_info$Experiment$Task <- decompose_task(task, version)
   obj$data$experiment_info$Experiment$Settings <-
     obj$data$experiment_info$Experiment$Settings$settings
   return(obj)
 }
 
-vremt_preprocess_experiment_log <- function(obj){
+#' @importFrom brainvr.reader get_experiment_log
+vremt_preprocess_experiment_log <- function(obj, version) {
   df_exp <- get_experiment_log(obj)
   df_exp$timestamp <- df_exp$Time
   # no longer needed as the loggin has been fixes
@@ -33,14 +38,14 @@ vremt_preprocess_experiment_log <- function(obj){
   return(obj)
 }
 
-vremt_preprocess_actions_log <- function(obj){
+vremt_preprocess_actions_log <- function(obj, version) {
   df_actions <- obj$data$actions_log$data
-  df_actions$ItemName <- convert_czech_to_en(df_actions$ItemName)
+  df_actions$ItemName <- convert_czech_to_en(df_actions$ItemName, version)
   obj$data$actions_log$data <- df_actions
   return(obj)
 }
 
-add_indices_experiment_log <- function(df_test){
+add_indices_experiment_log <- function(df_test) {
   #' This hack assigns Index based on the number of occurances of hte same
   #' Event and message
   #' .e.g. the first recall start gets 1, seconds recall start gets 2
@@ -52,8 +57,11 @@ add_indices_experiment_log <- function(df_test){
 
 #' Decomposes task as listed in the experiment info into data.frame
 #' @param task character with task settings
+#' @param version version of the ITEM_CODES or loctions to use. 
+#' If NA, all items are used
+#' 
 #' @return data.frame (island, locations, )
-decompose_task <- function(task){
+decompose_task <- function(task, version) {
   task <- gsub("\\]", "", task)
   task <- strsplit(task, "\\[")[[1]]
   task <- task[2:length(task)] # removes first always empty task
@@ -63,8 +71,9 @@ decompose_task <- function(task){
     daytime = sapply(out, `[`, 7),
     weather = sapply(out, `[`, 8)
   )
-  res$locations <- sapply(out, function(x){x[2:6]}, simplify = FALSE)
-  res$items <- sapply(res$locations, convert_location_to_item, simplify = FALSE)
+  res$locations <- sapply(out, function(x) { x[2:6] }, simplify = FALSE)
+  conversion_fnc <- \(x) convert_location_to_item(x, version = version)
+  res$items <- sapply(res$locations, conversion_fnc, simplify = FALSE)
   return(res)
 }
 
@@ -76,15 +85,22 @@ decompose_task <- function(task){
 #' \link{ITEM_CODES} data.
 #'
 #' @param locations english locations
+#' @param version if not NA ("2020" and "2024" available),
+#' only the data belonging to the version of the ITEM_CODES is used
 #'
 #' @return vector of characters with english codes of location names
 #' @export
 #'
 #' @examples
-convert_location_to_item <- function(locations) {
+convert_location_to_item <- function(locations, version = NA) {
+  if (!is.na(version)) {
+    df_locations <- LOCATION_ITEM[LOCATION_ITEM$version == version, ]
+  } else {
+    df_locations <- LOCATION_ITEM
+  }
   replace_func <- function(x) {
-    item_line <- LOCATION_ITEM[LOCATION_ITEM$location == x, ]
-    if(nrow(item_line) == 0) return(paste0("MissingLocation(", x, ")"))
+    item_line <- df_locations[df_locations$location == x, ]
+    if (nrow(item_line) == 0) return(paste0("MissingLocation(", x, ")"))
     return(item_line$item)
   }
   items <- sapply(locations, replace_func, simplify = TRUE, USE.NAMES = FALSE)
@@ -94,15 +110,22 @@ convert_location_to_item <- function(locations) {
 #' Converts czech names into english
 #'
 #' @param items
+#' @param version if not NA ("2020" and "2024" available),
+#' only the data belonging to the version of the ITEM_CODES is used
 #'
 #' @return
 #' @export
 #'
 #' @examples
-convert_czech_to_en <- function(items) {
+convert_czech_to_en <- function(items, version = NA) {
+  if (!is.na(version)) {
+    df_items <- ITEM_CODES[ITEM_CODES$version == version, ]
+  } else {
+    df_items <- ITEM_CODES
+  }
   replace_func <- function(x) {
-    item_line <- ITEM_CODES[ITEM_CODES$name_cz == x, ]
-    if(nrow(item_line) == 0) return(paste0("MissingEN(", x, ")"))
+    item_line <- df_items[df_items$name_cz == x, ]
+    if (nrow(item_line) == 0) return(paste0("MissingEN(", x, ")"))
     return(item_line$name_en)
   }
   en <- sapply(items, replace_func, simplify = TRUE, USE.NAMES = FALSE)
