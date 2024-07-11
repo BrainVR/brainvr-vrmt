@@ -33,7 +33,9 @@ vremt_preprocess_experiment_log <- function(obj, version) {
   df_exp <- get_experiment_log(obj)
   df_exp$timestamp <- df_exp$Time
   # no longer needed as the loggin has been fixes
-  # df_exp <- add_indices_experiment_log(df_exp)
+  df_exp$Sender[grep("subphase", df_exp$Event)] <- "phase"
+  df_exp$Event <- gsub(" subphase", "", df_exp$Event)
+  df_exp <- add_indices_experiment_log(df_exp)
   obj$data$experiment_log$data <- df_exp
   return(obj)
 }
@@ -41,6 +43,8 @@ vremt_preprocess_experiment_log <- function(obj, version) {
 vremt_preprocess_actions_log <- function(obj, version) {
   df_actions <- obj$data$actions_log$data
   df_actions$ItemName <- convert_czech_to_en(df_actions$ItemName, version)
+  df_actions$Phase <- gsub("recallSpaceSound", "recallPlacement",
+                           df_actions$Phase)
   obj$data$actions_log$data <- df_actions
   return(obj)
 }
@@ -57,9 +61,9 @@ add_indices_experiment_log <- function(df_test) {
 
 #' Decomposes task as listed in the experiment info into data.frame
 #' @param task character with task settings
-#' @param version version of the ITEM_CODES or loctions to use. 
+#' @param version version of the ITEM_CODES or loctions to use.
 #' If NA, all items are used
-#' 
+#'
 #' @return data.frame (island, locations, )
 decompose_task <- function(task, version) {
   task <- gsub("\\]", "", task)
