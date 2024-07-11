@@ -6,6 +6,7 @@
 \usage{
 geom_vremt_placements(
   recallPlacement,
+  version = 2024,
   mark_correct = TRUE,
   correct_distance = 20,
   ...
@@ -15,14 +16,13 @@ geom_vremt_placements(
 \item{recallPlacement}{recallPlacement object got through
 \code{\link{get_recallPlacement_data}} function}
 
+\item{version}{version of the experiment (2020 or 2024), if NA uses all}
+
 \item{mark_correct}{should the placements be colored based on the correctness}
 
 \item{correct_distance}{what is considered correct limit distance}
 
 \item{...}{}
-}
-\value{
-
 }
 \description{
 Plots locations of item placements

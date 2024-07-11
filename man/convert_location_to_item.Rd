@@ -4,10 +4,13 @@
 \alias{convert_location_to_item}
 \title{Converts location codes to item codes}
 \usage{
-convert_location_to_item(locations)
+convert_location_to_item(locations, version = NA)
 }
 \arguments{
 \item{locations}{english locations}
+
+\item{version}{if not NA ("2020" and "2024" available),
+only the data belonging to the version of the ITEM_CODES is used}
 }
 \value{
 vector of characters with english codes of location names

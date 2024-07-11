@@ -9,9 +9,6 @@ get_actions_log(obj)
 \arguments{
 \item{obj}{vremt object}
 }
-\value{
-
-}
 \description{
 Returns action long
 }

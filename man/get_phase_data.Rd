@@ -30,8 +30,8 @@ Returns portion of the object relevant to thegiven phase
 }
 \section{Functions}{
 \itemize{
-\item \code{get_recallItems_data}: wrapper to get recallItems phase
+\item \code{get_recallItems_data()}: wrapper to get recallItems phase
 
-\item \code{get_recallPlacement_data}: wrapper to get recallPlacement phase
+\item \code{get_recallPlacement_data()}: wrapper to get recallPlacement phase
+
 }}
-

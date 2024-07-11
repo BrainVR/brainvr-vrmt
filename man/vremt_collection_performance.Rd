@@ -4,13 +4,11 @@
 \alias{vremt_collection_performance}
 \title{Analyses the recall item collection performance}
 \usage{
-vremt_collection_performance(recallItems, index)
+vremt_collection_performance(recallItems)
 }
 \arguments{
 \item{recallItems}{vremt recallItem object receoved with
 \code{\link{get_recallItems_data}}}
-
-\item{index}{order of the phase to analyse}
 }
 \value{
 list with resutls

@@ -4,13 +4,12 @@
 \alias{preprocess_vremt}
 \title{Preprocesses vremt object}
 \usage{
-preprocess_vremt(obj)
+preprocess_vremt(obj, version = NA)
 }
 \arguments{
 \item{obj}{object of class vremt. loaded with load_vremt_experiments}
-}
-\value{
 
+\item{version}{version of the ITEM_CODES or loctions to use. If NA, all items are used}
 }
 \description{
 Preprocesses vremt object

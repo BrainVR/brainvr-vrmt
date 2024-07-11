@@ -4,17 +4,16 @@
 \alias{plot_vremt_path}
 \title{Plots path}
 \usage{
-plot_vremt_path(obj, background = FALSE, ...)
+plot_vremt_path(obj, version = 2024, background = FALSE, ...)
 }
 \arguments{
 \item{obj}{vremt object}
 
+\item{version}{version of the experiment (2020 or 2024), if NA uses all}
+
 \item{background}{should the background be added to the plot}
 
 \item{...}{ggplot arguments}
-}
-\value{
-
 }
 \description{
 Wrapper around \code{\link{plot_path}{navr}}

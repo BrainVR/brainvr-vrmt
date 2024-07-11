@@ -10,9 +10,6 @@ get_collected_items(phase_obj)
 \item{phase_obj}{Generally preselected vremt object. If you pass the entire
 object, not just particular phase, all items will be returned.}
 }
-\value{
-
-}
 \description{
 Returns list of collected items from given object action log
 }

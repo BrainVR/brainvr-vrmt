@@ -9,9 +9,6 @@ get_closest_arm(location)
 \arguments{
 \item{location}{Location is set as a numeric(3)}
 }
-\value{
-
-}
 \description{
 this is still better than get last get_last_bridge_entered
 due to complications with that function. See its manual for better description

@@ -4,13 +4,11 @@
 \alias{convert_czech_to_en}
 \title{Converts czech names into english}
 \usage{
-convert_czech_to_en(items)
+convert_czech_to_en(items, version = NA)
 }
 \arguments{
-\item{items}{}
-}
-\value{
-
+\item{version}{if not NA ("2020" and "2024" available),
+only the data belonging to the version of the ITEM_CODES is used}
 }
 \description{
 Converts czech names into english

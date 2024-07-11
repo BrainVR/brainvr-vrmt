@@ -4,7 +4,12 @@
 \alias{geom_vremt_location}
 \title{Plots locations and placement circles}
 \usage{
-geom_vremt_location(locations, point_args = list(), text_args = list())
+geom_vremt_location(
+  locations,
+  version = NA,
+  point_args = list(),
+  text_args = list()
+)
 }
 \arguments{
 \item{locations}{character vector of locations to be plotted}

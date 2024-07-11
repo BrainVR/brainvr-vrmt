@@ -9,9 +9,6 @@ get_phase_task_settings(phase_obj)
 \arguments{
 \item{phase_obj}{}
 }
-\value{
-
-}
 \description{
 wrapper around get_task_settings and get_phase_task_index.
 }

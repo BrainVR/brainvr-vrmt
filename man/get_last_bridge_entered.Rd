@@ -11,9 +11,6 @@ get_last_bridge_entered(obj, time)
 
 \item{time}{time of interest}
 }
-\value{
-
-}
 \description{
 this is prone to error due to the fact how the triggers are
 recorded. Participant can technically enter a bridge and then exit it withou

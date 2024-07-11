@@ -4,7 +4,12 @@
 \alias{load_vremt_experiments}
 \title{Loads all vremt experiments from given folder}
 \usage{
-load_vremt_experiments(folder, preprocess = TRUE, flatten = FALSE)
+load_vremt_experiments(
+  folder,
+  version = 2024,
+  preprocess = TRUE,
+  flatten = FALSE
+)
 }
 \arguments{
 \item{preprocess}{should the loaded files be preprocessed}

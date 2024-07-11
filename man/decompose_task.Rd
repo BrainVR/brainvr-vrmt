@@ -4,10 +4,13 @@
 \alias{decompose_task}
 \title{Decomposes task as listed in the experiment info into data.frame}
 \usage{
-decompose_task(task)
+decompose_task(task, version)
 }
 \arguments{
 \item{task}{character with task settings}
+
+\item{version}{version of the ITEM_CODES or loctions to use. 
+If NA, all items are used}
 }
 \value{
 data.frame (island, locations, )

@@ -6,7 +6,7 @@
 \alias{get_arm_position}
 \title{Returns the position of a particular location (or item)}
 \usage{
-get_location_position(locations, simplify = TRUE)
+get_location_position(locations, version = NA, simplify = TRUE)
 
 get_item_position(items, simplify = TRUE)
 
@@ -14,6 +14,9 @@ get_arm_position(arms = seq_len(5), simplify = TRUE)
 }
 \arguments{
 \item{locations}{name of the location defining the location}
+
+\item{version}{version of the locations to use ("2020" or "2024").
+If NA, all locations are used. Default NA}
 
 \item{simplify}{only valid in case of a single location return. If true,
 only a vector is returned. Otherwise even single location is returned as a
@@ -34,11 +37,11 @@ a location and a globe as an item have the same position)
 }
 \section{Functions}{
 \itemize{
-\item \code{get_item_position}: getting item position
+\item \code{get_item_position()}: getting item position
 
-\item \code{get_arm_position}: returns position of a given arm
+\item \code{get_arm_position()}: returns position of a given arm
+
 }}
-
 \examples{
 get_location_position("cemetery")
 }

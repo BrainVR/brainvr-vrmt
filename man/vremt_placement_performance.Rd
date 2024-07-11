@@ -2,9 +2,9 @@
 % Please edit documentation in R/vremt-analysis.R
 \name{vremt_placement_performance}
 \alias{vremt_placement_performance}
-\title{Analyses the recall placemnent phase}
+\title{Analyses the recall placement phase}
 \usage{
-vremt_placement_performance(recallPlacement, index)
+vremt_placement_performance(recallPlacement)
 }
 \arguments{
 \item{recallPlacement}{vremt placement object got with
@@ -16,5 +16,5 @@ vremt_placement_performance(recallPlacement, index)
 list with results
 }
 \description{
-Analyses the recall placemnent phase
+Analyses the recall placement phase
 }
