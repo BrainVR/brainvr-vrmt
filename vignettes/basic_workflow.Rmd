@@ -1,0 +1,23 @@
+---
+title: "Basic_workflow"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Basic_workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>"
+)
+```
+
+```{r setup}
+library(brainvr.vremt)
+here::i_am("vignettes/basic_workflow.Rmd")
+```
+
+```{r}
+exps <- load_vremt_experiments(here("tests/data/version2020"))
+exp <- exps[[3]]
+```
