@@ -4,3 +4,8 @@
 .Ruserdata
 
 *playground.R
+inst/doc
+
+.Renviron
+
+test-data/
