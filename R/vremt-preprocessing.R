@@ -41,11 +41,20 @@ vremt_preprocess_experiment_log <- function(obj, version) {
 }
 
 vremt_preprocess_actions_log <- function(obj, version) {
-  df_actions <- obj$data$actions_log$data
+  df_actions <- get_actions_log(obj)
   colnames(df_actions) <- gsub("_", "", colnames(df_actions))
-  df_actions$ItemName <- convert_czech_to_en(df_actions$ItemName, version)
-  df_actions$Phase <- gsub("recallSpaceSound", "recallPlacement",
-                           df_actions$Phase)
+  to_snake_case <- \(x) {
+    tolower(gsub("([a-z])([A-Z])", "\\1_\\2", x))
+  }
+  colnames(df_actions) <- sapply(colnames(df_actions),
+                  to_snake_case, simplify = TRUE, USE.NAMES = FALSE)
+  df_actions$item_name <- convert_czech_to_en(df_actions$item_name, version)
+  df_actions$phase <- gsub("recallSpaceSound", "recallPlacement",
+                           df_actions$phase)
+  if (version == "2020") {
+    # rename column taskcity to trial_name
+    df_actions$trial_name <- df_actions$taskcity
+  }
   obj$data$actions_log$data <- df_actions
   return(obj)
 }

@@ -7,10 +7,13 @@
 #' @export
 #'
 #' @examples
-vremt_collection_performance <- function(recallItems){
+vremt_collection_performance <- function(recallItems) {
   # TODO
-  # Check if not empty
   phase_task_index <- get_phase_task_index(recallItems)
+  if (is.null(phase_task_index)) {
+    warning("No task index found")
+    return(NULL)
+  }
   task <- get_task_settings(recallItems, phase_task_index)
   res <- list()
 

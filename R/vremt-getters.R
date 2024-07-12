@@ -30,7 +30,7 @@ get_phase_data <- function(obj, phase, index = NA) {
 #' @export
 #'
 #' @examples
-filter_times.vremt <- function(obj, times){
+filter_times.vremt <- function(obj, times) {
   filtered_obj <- obj
   filtered_obj$data$actions_log$data <- filter_log_timestamp(
     filtered_obj$data$actions_log$data, times)
@@ -43,13 +43,13 @@ filter_times.vremt <- function(obj, times){
 
 #' @describeIn get_phase_data wrapper to get recallItems phase
 #' @export
-get_recallItems_data <- function(obj, index = NA){
+get_recallItems_data <- function(obj, index = NA) {
   return(get_phase_data(obj, "recallItems", index))
 }
 
 #' @describeIn get_phase_data wrapper to get recallPlacement phase
 #' @export
-get_recallPlacement_data <- function(obj, index = NA){
+get_recallPlacement_data <- function(obj, index = NA) {
   return(get_phase_data(obj, "recallPlacement", index))
 }
 
@@ -96,7 +96,7 @@ get_phase_time <- function(obj, phase, index = NA) {
 }
 
 # Helper function to filter all various logs in the vremt object
-filter_log_timestamp <- function(df_input, timewindow){
+filter_log_timestamp <- function(df_input, timewindow) {
   out <- df_input[df_input$timestamp >= timewindow[1] &
                   df_input$timestamp <= timewindow[2], ]
   return(out)
@@ -126,10 +126,10 @@ get_actions_log <- function(obj){
 #' @export
 #'
 #' @examples
-get_collected_items <- function(phase_obj){
+get_collected_items <- function(phase_obj) {
   df_actions <- get_actions_log(phase_obj)
-  collected_items <- df_actions$item_name[df_actions$Action == "picked"]
-  dropped_items <- df_actions$item_name[df_actions$Action == "dropped"]
+  collected_items <- df_actions$item_name[df_actions$action == "picked"]
+  dropped_items <- df_actions$item_name[df_actions$action == "dropped"]
   # removes dropped items from collected items
   if (length(dropped_items) > 0) {
     collected_items <- setdiff_unique(collected_items, dropped_items)
@@ -162,11 +162,11 @@ get_phase_task_settings <- function(phase_obj){
 #' @export
 #'
 #' @examples
-get_task_settings <- function(obj, index = NA){
+get_task_settings <- function(obj, index = NA) {
   settings <- obj$data$experiment_info$Experiment$Task
-  if(is.na(index)) return(settings)
+  if (is.na(index)) return(settings)
   task <- settings[index, ]
-  if(is.na(task$island)){
+  if (is.na(task$island)) {
     warning("Task of index ", index, " does not exist")
     return(NULL)
   }
@@ -190,16 +190,16 @@ get_task_settings <- function(obj, index = NA){
 #' @export
 #'
 #' @examples
-get_phase_task_index <- function(phase_obj, zero_based = FALSE){
+get_phase_task_index <- function(phase_obj, zero_based = FALSE) {
   df_actions <- get_actions_log(phase_obj)
-  task_cities <- df_actions$taskcity
-  if (any(task_cities != task_cities[1])){
+  task_cities <- df_actions$trial_name
+  if (any(task_cities != task_cities[1])) {
     warning("there are multiple tasks in the given object. Filter it first so",
             "that it only contains a single task")
     return(NULL)
   }
-  index <- as.integer(gsub("Task", "", task_cities[1]))
-  if(!zero_based) index <- index + 1
+  index <- as.integer(gsub("Trial", "", task_cities[1]))
+  if (!zero_based) index <- index + 1
   return(index)
 }
 
