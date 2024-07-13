@@ -11,8 +11,8 @@ preprocess_vremt <- function(obj, version = NA) {
   # check if the obj has version set
   if (!is.null(obj$version) && !is.na(version)) {
     message("Version of the object is already set. Overwriting with ", version)
-    obj$version <- obj$version
   }
+  obj$version <- version
   obj <- vremt_preprocess_experiment_log(obj, version)
   obj <- vremt_preprocess_actions_log(obj, version)
   obj <- vremt_preprocess_experiment_info(obj, version)

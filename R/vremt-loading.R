@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-load_vremt_experiments <- function(folder, version = 2024,
+load_vremt_experiments <- function(folder, version = "2024",
                                    preprocess = TRUE, flatten = FALSE) {
   message("Loading brainvr experiments")
   exps <- load_experiments(folder)

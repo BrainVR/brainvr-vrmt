@@ -1,5 +1,4 @@
 
-
 test_that("Testing geom location", {
   #single locaiton plotting
   # two location plotting

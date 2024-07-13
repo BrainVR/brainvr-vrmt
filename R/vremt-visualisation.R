@@ -39,7 +39,7 @@ plot_vremt_path <- function(obj, version = 2024, background = FALSE, ...) {
 #' @examples
 geom_vremt_location <- function(locations, version = NA,
                                 point_args = list(),
-                                text_args = list()){
+                                text_args = list()) {
   DEFAULT_POINT_ARGS <- list(shape = 21, size = 25, stroke = 2,
                              color = "grey60", alpha = 0.8)
   point_args <- modifyList(DEFAULT_POINT_ARGS, point_args)
@@ -94,4 +94,27 @@ geom_vremt_placements <- function(recallPlacement,
                         check_overlap = TRUE)
               )
   return(res)
+}
+
+
+#' Plots the recallPlacement phase
+#' 
+#' @param obj vremt object
+#' @param i index of the phase
+#' 
+#' @return ggplot object
+#' @export
+recallPlacement_plot <- function(obj, i) {
+  phase_obj <- get_recallPlacement_data(obj, i)
+  i_phase <- get_phase_task_index(phase_obj)
+  task <- get_task_settings(obj, i_phase)
+  plt <- plot_vremt_path(phase_obj, background = TRUE,
+                         color = "grey40", size = 1.25) +
+    geom_vremt_location(task$locations[[1]], version = obj$version,
+                        text_args = list(size = 7, nudge_x = 10,
+                                         nudge_y = 10)) +
+    geom_vremt_placements(phase_obj, correct_distance = 15) +
+    scale_color_manual(values = c("#1d28e2", "#cd3333")) +
+    guides(color = "none")
+  return(plt)
 }
