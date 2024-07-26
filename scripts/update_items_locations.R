@@ -1,4 +1,4 @@
-# Generally saved in the .Renviron file 
+# Generally saved in the .Renviron file
 readRenviron(".Renviron")
 SHEET_ID <- Sys.getenv("BRAINVR_ISLANDS_ITEMS_SHEET_ID")
 
