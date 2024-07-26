@@ -56,7 +56,8 @@ get_recallPlacement_data <- function(obj, index = NA) {
 #' Returns times of given phase.
 #'
 #' @param obj vremt object
-#' @param phase name of the phase as it stands in the experiment_log. e.g. "recall"
+#' @param phase name of the phase as it stands in the experiment_log.
+#' e.g. "recall"
 #' @param order index of hte phase in case there were multiple phases
 #' of the same number
 #'
@@ -223,11 +224,7 @@ get_phase_task_index <- function(phase_obj, zero_based = FALSE) {
 #' @examples
 #' get_location_position("cemetery")
 get_location_position <- function(locations, version = NA, simplify = TRUE) {
-  if (!is.na(version)) {
-    df_locations <- LOCATION_ITEM[LOCATION_ITEM$version == version, ]
-  } else {
-    df_locations <- LOCATION_ITEM
-  }
+  df_locations <- get_location_item_data(version)
   out <- df_locations[df_locations$location %in% locations,
                       c("location", "position_x", "position_z", "position_y")]
   if (nrow(out) > length(locations)) {
@@ -249,33 +246,35 @@ get_location_position <- function(locations, version = NA, simplify = TRUE) {
 
 #' @describeIn get_location_position getting item position
 #' @param item name of the item
-get_item_position <- function(items, simplify = TRUE){
-  out <- LOCATION_ITEM[LOCATION_ITEM$item %in% items,
-                       c("item", "position_x", "position_z", "position_y")]
-  if(nrow(out) != length(items)){
-    warning("Items of name ", items[!(items %in% LOCATION_ITEM$item)],
+get_item_position <- function(items, simplify = TRUE, version = NA) {
+  df_locations <- get_location_item_data(version)
+  out <- df_locations[df_locations$item %in% items,
+                      c("item", "position_x", "position_z", "position_y")]
+  if (nrow(out) != length(items)) {
+    warning("Items of name ", items[!(items %in% df_locations$item)],
             " do not exist.")
     return(NULL)
   }
   rownames(out) <- out$item
   out$item <- NULL
-  if(nrow(out) == 1 && simplify) out <- unlist(out)
+  if (nrow(out) == 1 && simplify) out <- unlist(out)
   return(out)
 }
 
 #' @describeIn get_location_position returns position of a given arm
 #' @param arms number 1-5 defining the arm of the island. Defaults to all arms
-get_arm_position <- function(arms = seq_len(5), simplify = TRUE){
-  if(!(all(arms %in% seq_len(5)))){
+get_arm_position <- function(arms = seq_len(5), simplify = TRUE, version = NA) {
+  if (!(all(arms %in% seq_len(5)))) {
     warning("There are only arms 1 to 5")
     return(NULL)
   }
-  out <- LOCATION_ITEM[LOCATION_ITEM$arm %in% arms,
-                       c("arm", "position_x", "position_z", "position_y")]
+  df_locations <- get_location_item_data(version)
+  out <- df_locations[df_locations$arm %in% arms,
+                      c("arm", "position_x", "position_z", "position_y")]
   out <- unique(out)
   rownames(out) <- out$arms
   out$arm <- NULL
-  if(nrow(out) == 1 && simplify) out <- unlist(out)
+  if (nrow(out) == 1 && simplify) out <- unlist(out)
   return(out)
 }
 
@@ -298,7 +297,7 @@ get_last_bridge_entered <- function(obj, time){
   exp_log <- exp_log[exp_log$Sender == "trigger" &
                        grepl("bridge", exp_log$Message), ]
   exp_log <- exp_log[exp_log$Time < time, ]
-  if(nrow(exp_log) == 0){
+  if (nrow(exp_log) == 0) {
     warning()
     return(NULL)
   }
@@ -308,4 +307,13 @@ get_last_bridge_entered <- function(obj, time){
   line <- tail(exp_log, 1)
   location <- gsub("bridge-", "", line$Message)
   return(location)
+}
+
+get_location_item_data <- function(version = NA) {
+  if (is.na(version)) return(LOCATION_ITEM)
+  return(LOCATION_ITEM[LOCATION_ITEM$version == version, ])
+}
+get_item_data <- function(version = NA) {
+  if (is.na(version)) return(ITEM_CODES)
+  return(ITEM_CODES[ITEM_CODES$version == version, ])
 }

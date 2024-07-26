@@ -27,9 +27,9 @@ plot_vremt_path <- function(obj, version = 2024, background = FALSE, ...) {
 #' Plots locations and placement circles
 #'
 #' @param locations character vector of locations to be plotted
-#' @param point_args list with ggplot geom_point arguments. can be used to override
-#' the default arguments of location drawing. By default it is list(
-#' shape = 21, size = 25, stroke = 2, color = "grey60", alpha = 0.8)
+#' @param point_args list with ggplot geom_point arguments.
+#' can be used to override the default arguments of location drawing. Default
+#' list(shape = 21, size = 25, stroke = 2, color = "grey60", alpha = 0.8)
 #' @param text_args list of ggplot geom_text arguemnts. overrides default
 #' argumetns in text. Default is list(hjust = 0, nudge_x = 15, size = 7)
 #'
@@ -85,13 +85,15 @@ geom_vremt_placements <- function(recallPlacement,
   } else {
     performance$correct <- "correct"
   }
-  res <- list(geom_point(data = performance, aes(x = position_x, y = position_y,
-                                                 color = correct),
-                         shape = 4, size = 5, stroke = 2),
-              geom_text(data = performance, aes(x = position_x, y = position_y,
-                                                label = item_name, color = correct),
-                        hjust = 0, nudge_x = -15, size = 8, nudge_y = -10,
-                        check_overlap = TRUE)
+  res <- list(
+    geom_point(data = performance,
+               aes(x = position_x, y = position_y, color = correct),
+               shape = 4, size = 5, stroke = 2),
+    geom_text(data = performance,
+              aes(x = position_x, y = position_y,
+                  label = item_name, color = correct),
+              hjust = 0, nudge_x = -15, size = 8, nudge_y = -10,
+              check_overlap = TRUE)
               )
   return(res)
 }

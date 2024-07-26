@@ -37,13 +37,14 @@ vremt_collection_performance <- function(recallItems) {
 #' @export
 #'
 #' @examples
-vremt_placement_performance <- function(recallPlacement){
+vremt_placement_performance <- function(recallPlacement, version = NA) {
   phase_task_index <- get_phase_task_index(recallPlacement)
   task <- get_task_settings(recallPlacement, phase_task_index)
   df_actions <- get_actions_log(recallPlacement)
 
-  # participants can pick the object back and then drop it elsewhere, need to only
-  # count the last drop
+  df_locations <- get_location_item_data(version)
+  # participants can pick the object back and then drop it elsewhere,
+  # need to only count the last drop
   drop <- select_last_drops(df_actions)
 
   # placemnt distance error
@@ -53,24 +54,25 @@ vremt_placement_performance <- function(recallPlacement){
   correct_position <- get_item_position(task$items[[1]])
 
   target_distance <- sapply(row.names(res), function(x){
-    euclid_distance(as.numeric(res[x,]), as.numeric(correct_position[x,]))
-    }
-  )
+    euclid_distance(as.numeric(res[x, ]), as.numeric(correct_position[x, ]))
+  })
   res <- merge(res, as.data.frame(target_distance), by = "row.names")
 
+  # locations
   # order error
   df_order <- drop[order(drop$timestamp), c("item_name", "location")]
-  df_order$order <- 1:nrow(df_order) #needs to be ordered (see line above)
+  df_order$order <- seq_len(nrow(df_order)) #needs to be ordered
   df_order$correct_order <- match(drop$item_name, task$items[[1]])
   df_order$order_error <- df_order$order - df_order$correct_order
-  df_order <- merge(df_order, LOCATION_ITEM[, c("location", "arm")],
+  df_order <- merge(df_order, df_locations[, c("location", "arm")],
                     by = "location", all.x = TRUE)
 
   res <- merge(df_order, res, by.x = "item_name", by.y = "Row.names")
 
   ## Adds the correct solution
-  res <- merge(res, LOCATION_ITEM[, c("location", "arm", "item")],
-               by.x = "item_name", by.y = "item", all.x = TRUE, suffixes = c("", "_correct"))
+  res <- merge(res, df_locations[, c("location", "arm", "item")],
+               by.x = "item_name", by.y = "item", all.x = TRUE,
+               suffixes = c("", "_correct"))
   return(res)
 }
 
@@ -88,18 +90,21 @@ item_performance <- function(wanted_items, collected_items) {
   res <- list()
   res$correct_items <- intersect_unique(wanted_items, collected_items)
   res$missing_items <- setdiff_unique(wanted_items, collected_items,
-                                     nomatch = wanted_items)
+                                      nomatch = wanted_items)
   res$extra_items <- setdiff_unique(collected_items, wanted_items,
-                                   nomatch = collected_items)
-  res <- add_field_lengths(res, c("missing_items", "correct_items", "extra_items"))
-  res <- collapse_fields(res, c("missing_items", "correct_items", "extra_items"))
+                                    nomatch = collected_items)
+  res <- add_field_lengths(res, c("missing_items", "correct_items",
+                                  "extra_items"))
+  res <- collapse_fields(res, c("missing_items", "correct_items",
+                                "extra_items"))
   return(res)
 }
 
 #' Returns which arm is closest
 #'
 #' @description this is still better than get last get_last_bridge_entered
-#' due to complications with that function. See its manual for better description
+#' due to complications with that function. See its manual
+#' for better description
 #'
 #' @param location Location is set as a numeric(3)
 #'
@@ -107,7 +112,7 @@ item_performance <- function(wanted_items, collected_items) {
 #' @export
 #'
 #' @examples
-get_closest_arm <- function(location){
+get_closest_arm <- function(location) {
   distances <- get_arm_distances(location)
   min <- which(min(distances) == distances)
   return(min)

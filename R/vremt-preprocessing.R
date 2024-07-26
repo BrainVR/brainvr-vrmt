@@ -99,7 +99,7 @@ decompose_task <- function(task, version) {
 #' \link{ITEM_CODES} data.
 #'
 #' @param locations english locations
-#' @param version if not NA ("2020" and "2024" available),
+#' @param version if not NULL ("2020" and "2024" available),
 #' only the data belonging to the version of the ITEM_CODES is used
 #'
 #' @return vector of characters with english codes of location names
@@ -107,11 +107,7 @@ decompose_task <- function(task, version) {
 #'
 #' @examples
 convert_location_to_item <- function(locations, version = NA) {
-  if (!is.na(version)) {
-    df_locations <- LOCATION_ITEM[LOCATION_ITEM$version == version, ]
-  } else {
-    df_locations <- LOCATION_ITEM
-  }
+  df_locations <- get_location_item_data(version)
   replace_func <- function(x) {
     item_line <- df_locations[df_locations$location == x, ]
     if (nrow(item_line) == 0) return(paste0("MissingLocation(", x, ")"))
@@ -132,11 +128,7 @@ convert_location_to_item <- function(locations, version = NA) {
 #'
 #' @examples
 convert_czech_to_en <- function(items, version = NA) {
-  if (!is.na(version)) {
-    df_items <- ITEM_CODES[ITEM_CODES$version == version, ]
-  } else {
-    df_items <- ITEM_CODES
-  }
+  df_items <- get_item_data(version)
   replace_func <- function(x) {
     item_line <- df_items[df_items$name_cz == x, ]
     if (nrow(item_line) == 0) return(paste0("MissingEN(", x, ")"))
