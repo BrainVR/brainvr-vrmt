@@ -1,6 +1,6 @@
 library(brainvr.vremt)
-exps <- load_vremt_experiments("../data/version2024")
-exp <- exps[[1]]
+exps <- exps2024
+exp <- exps2024[[1]]
 
 test_that("Simple getters", {
   out <- get_actions_log(exp)
@@ -10,7 +10,7 @@ test_that("Simple getters", {
 test_that("Getting phases", {
   expect_warning(obj <- get_phase_data(exp, "recall"))
   expect_null(obj)
-  expect_silent(obj <- get_phase_data(exp, "recall", 1))
+  expect_silent(obj <- get_phase_data(exp, "recallPlacement", 1))
   expect_s3_class(obj, class(exp))
 
   expect_silent(obj <- get_phase_data(exp, "recallItems", 1))

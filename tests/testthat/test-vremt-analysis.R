@@ -1,5 +1,4 @@
-exps <- load_vremt_experiments("../data/version2024")
-exp <- exps[[3]]
+exp <- exps2024[[1]]
 
 test_that("Item collection analysis works", {
   recallItems <- get_recallItems_data(exp, 1)
