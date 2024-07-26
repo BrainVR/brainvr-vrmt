@@ -53,7 +53,7 @@ vremt_placement_performance <- function(recallPlacement, version = NA) {
   colnames(res) <- c("position_x", "position_z", "position_y")
   correct_position <- get_item_position(task$items[[1]])
 
-  target_distance <- sapply(row.names(res), function(x){
+  target_distance <- sapply(row.names(res), function(x) {
     euclid_distance(as.numeric(res[x, ]), as.numeric(correct_position[x, ]))
   })
   res <- merge(res, as.data.frame(target_distance), by = "row.names")
@@ -70,9 +70,11 @@ vremt_placement_performance <- function(recallPlacement, version = NA) {
   res <- merge(df_order, res, by.x = "item_name", by.y = "Row.names")
 
   ## Adds the correct solution
+  ## TODO this is wrong and returning double the rows
   res <- merge(res, df_locations[, c("location", "arm", "item")],
                by.x = "item_name", by.y = "item", all.x = TRUE,
                suffixes = c("", "_correct"))
+  res <- dplyr::distinct(res)
   return(res)
 }
 
